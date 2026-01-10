@@ -57,7 +57,7 @@ html,body{
  width:94vw;
  max-width:420px;
  max-height:92vh;
- background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7); /* full inside card gradient */
+ background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7);
  border-radius:22px;
  box-shadow:0 0 30px rgba(212,160,23,0.45);
  position:relative;
@@ -68,7 +68,7 @@ html,body{
 .inside-bg{
  position:absolute;
  inset:0;
- background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7); /* same gradient for full inside */
+ background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7);
  border-radius:22px;
 }
 
@@ -156,7 +156,9 @@ footer{
 .flower{
  position:fixed;
  top:-30px;
- font-size:18px;
+ width:18px;
+ height:18px;
+ border-radius:50%;
  animation:fall linear infinite;
  pointer-events:none;
 }
@@ -304,13 +306,16 @@ function openInvite(){
 
 /* FLOWERS */
 function flowers(){
- const colors = ['💮','#d0f0ff','🌸','#ffdce7']; // pink + blue + flower emojis
+ const colors = ['#ffdce7','#d0f0ff']; // pink and light blue
  for(let i=0;i<25;i++){
   let f=document.createElement('div');
   f.className='flower';
-  f.innerText = colors[i%4];
-  f.style.left=Math.random()*100+'vw';
-  f.style.animationDuration=5+Math.random()*5+'s';
+  f.style.backgroundColor = colors[i%2]; // alternate pink/blue
+  f.style.width = '18px';
+  f.style.height = '18px';
+  f.style.borderRadius = '50%';
+  f.style.left = Math.random()*100+'vw';
+  f.style.animationDuration = 5+Math.random()*5+'s';
   document.body.appendChild(f);
  }
 }

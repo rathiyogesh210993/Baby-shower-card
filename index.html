@@ -17,7 +17,7 @@ html,body{
  overflow:hidden;
 }
 
-/* TAP COVER */
+/* COVER */
 .cover{
  position:fixed;
  inset:0;
@@ -71,13 +71,11 @@ html,body{
 /* TITLES */
 .main-title{
  font-size:30px;
- color:#b30000;
  font-weight:700;
  margin:12px 0;
 }
 .name{
  font-size:22px;
- color:#b30000;
  font-weight:700;
  margin:8px 0;
 }
@@ -86,17 +84,16 @@ html,body{
 .details{
  font-size:16px;
  line-height:1.8;
- color:#b30000;
 }
 
-/* SEPARATOR */
+/* LINE */
 .gold-line{
  height:1px;
  background:linear-gradient(to right, transparent,#e5c07b,transparent);
  margin:14px 0;
 }
 
-/* MAP BUTTON */
+/* MAP */
 .map-btn{
  margin:12px 0;
  background:#ffb3b3;
@@ -167,9 +164,16 @@ footer{
 
  <div class="details">
  ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
- રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે<br>
- <b>સવાર ૧૧:૦૦ થી બપોરે ૧:૦૦ વાગ્યા સુધી</b><br>
- રાખેલ છે. તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
+ રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.<br>
+ તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
+ </div>
+
+ <div class="gold-line"></div>
+
+ <!-- BHOJAN -->
+ <div class="details">
+ <b>ભોજન સમારંભ</b><br>
+ સમય : 11 AM થી 1 PM
  </div>
 
  <div class="gold-line"></div>
@@ -199,15 +203,15 @@ footer{
  <footer>
  પરિવાર ની ખુશીમાં સહભાગી થવા આવો,<br>
  વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
- અંજલી અને સાહિલ
+ - અંજલી અને સાહિલ
  </footer>
 
  </div>
 </div>
 
-<!-- SOFT FLUTE MUSIC -->
+<!-- SOFT FLUTE -->
 <audio id="flute" loop>
- <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_36e3a40f62.mp3" type="audio/mpeg">
+ <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_36e3a40f62.mp3">
 </audio>
 
 <script>
@@ -216,7 +220,6 @@ function openInvite(){
  document.getElementById('flute').play();
  flowers();
 }
-
 function flowers(){
  for(let i=0;i<30;i++){
   let f=document.createElement('div');

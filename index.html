@@ -9,24 +9,25 @@
 html,body{
  margin:0;
  height:100%;
- background:#081a38;
+ background:#fff8e7; /* light cream background */
  display:flex;
  justify-content:center;
  align-items:center;
  overflow:hidden;
  font-family:'Georgia', serif;
+ color:#4a3f35; /* dark text for readability */
 }
 
 /* TAP TO OPEN */
 .cover{
  position:fixed;
  inset:0;
- background:linear-gradient(135deg,#081a38,#0b1f3f);
+ background:linear-gradient(135deg,#fff8e7,#fff1c8);
  display:flex;
  flex-direction:column;
  justify-content:center;
  align-items:center;
- color:#ffd966;
+ color:#d4a017; /* golden highlight */
  z-index:100;
  cursor:pointer;
  transition:1s ease;
@@ -39,7 +40,7 @@ html,body{
  margin-top:18px;
  width:70px;
  height:70px;
- border:2px solid gold;
+ border:2px solid #d4a017;
  border-radius:50%;
  display:flex;
  align-items:center;
@@ -56,9 +57,9 @@ html,body{
  width:94vw;
  max-width:420px;
  max-height:92vh;
- background:#0b1f3f;
+ background:#fff1c8; /* soft yellow */
  border-radius:22px;
- box-shadow:0 0 30px rgba(212,175,55,0.45);
+ box-shadow:0 0 30px rgba(212,160,23,0.45);
  position:relative;
  overflow-y:auto;
 }
@@ -68,9 +69,9 @@ html,body{
  position:absolute;
  inset:0;
  background:
-  radial-gradient(circle at left 20%, rgba(212,175,55,0.35), transparent 55%),
-  radial-gradient(circle at right 20%, rgba(212,175,55,0.35), transparent 55%),
-  linear-gradient(rgba(8,26,56,0.92),rgba(8,26,56,0.92));
+  radial-gradient(circle at left 20%, rgba(212,160,23,0.3), transparent 55%),
+  radial-gradient(circle at right 20%, rgba(212,160,23,0.3), transparent 55%),
+  linear-gradient(rgba(255,248,231,0.92), rgba(255,241,200,0.92));
 }
 
 /* CONTENT */
@@ -79,229 +80,20 @@ html,body{
  z-index:2;
  padding:20px;
  text-align:center;
- color:#fff;
 }
 
 .main-title{
  font-size:28px;
- color:#ffd966;
+ color:#d4a017; /* gold title */
  font-weight:700;
  margin:10px 0;
 }
 .name{
  font-size:22px;
  font-weight:700;
- color:#ffd966;
- text-shadow:0 0 10px gold;
+ color:#d4a017;
+ text-shadow:0 0 6px #d4a017;
  margin:6px 0;
 }
 .details{
- font-size:16px;
- line-height:1.8;
- color:#eaeaea;
-}
-.gold-line{
- height:1px;
- background:linear-gradient(to right, transparent, gold, transparent);
- margin:14px 0;
-}
-
-/* FOOTER */
-footer{
- font-size:18px;
- margin-top:14px;
- color:#ffd966;
- font-weight:bold;
- text-align:center;
-}
-
-/* FLOWERS */
-.flower{
- position:fixed;
- top:-30px;
- font-size:18px;
- animation:fall linear infinite;
- pointer-events:none;
-}
-@keyframes fall{
- to{transform:translateY(110vh) rotate(360deg);}
-}
-
-/* SPARKLES */
-.sparkle{
- position:absolute;
- width:6px;
- height:6px;
- background:gold;
- border-radius:50%;
- animation:twinkle 2s infinite;
-}
-@keyframes twinkle{
- 0%,100%{opacity:0}
- 50%{opacity:1}
-}
-
-/* QR IMAGE */
-.qr img{
- width:80px;
- height:80px;
- margin-top:6px;
-}
-
-/* DESKTOP */
-@media(min-width:768px){
- .details{font-size:17px}
- .main-title{font-size:32px}
-}
-</style>
-</head>
-
-<body>
-
-<!-- TAP SCREEN -->
-<div class="cover" onclick="openInvite()">
- <h2>Tap to Open Invitation</h2>
- <div class="tap">👆</div>
-</div>
-
-<!-- CARD -->
-<div class="card">
- <div class="inside-bg"></div>
- <div class="content">
-
-   <div class="details">
-     શ્રી ગણેશાય નમઃ<br>
-     શ્રી સચ્ચિયાય માતાય નમઃ
-   </div>
-
-   <div class="main-title">સીમંત સંસ્કાર</div>
-
-   <div class="details">
-     અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
-     ચિ. યોગેશ ના ધર્મપત્ની
-   </div>
-
-   <div class="name">અ. સૌ. મેઘના</div>
-
-   <div class="details">
-     ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
-     રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.<br>
-     તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
-   </div>
-
-   <div class="gold-line"></div>
-
-   <div class="details">
-     <b>શુભ સ્થળ :</b><br>
-     The Vibe X Banquet,<br>
-     Near Tapovan Circle,<br>
-     Ahmedabad
-   </div>
-
-   <!-- MAP QR -->
-   <div class="qr">
-     <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad">
-   </div>
-
-   <div class="gold-line"></div>
-
-   <div class="details">
-     ઘર માં ખુશી ની આહટ સાથે,<br>
-     નાના મહેમાન ના સ્વાગત માટે,<br>
-     ઉત્સુકતા થી રાહ જોઈ રહ્યા છે,<br>
-     ક્રિયાંશ અને કાવ્યા
-   </div>
-
-   <footer>
-     પરિવાર ની ખુશીમાં સહભાગી થવા આવો,<br>
-   વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
-અંજલી અને સાહિલ
-   </footer>
-
- </div>
-</div>
-
-<script>
-/* ===== MA AAMBA DEVOTIONAL MUSIC ===== */
-let audioCtx;
-let drone, gainNode;
-let chantInterval;
-
-function playMusic(){
- if(!audioCtx){
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-  gainNode = audioCtx.createGain();
-  gainNode.gain.value = 0.04;
-  gainNode.connect(audioCtx.destination);
-
-  /* TANPURA DRONE */
-  drone = audioCtx.createOscillator();
-  drone.type = "sine";
-  drone.frequency.value = 136.1; 
-  drone.connect(gainNode);
-  drone.start();
-
-  chantInterval = setInterval(playChant, 2000);
- }else{
-  audioCtx.resume();
- }
-}
-
-function playChant(){
- let osc = audioCtx.createOscillator();
- let g = audioCtx.createGain();
-
- osc.type = "sine";
- let notes = [272.2, 288, 305, 324]; 
- osc.frequency.value = notes[Math.floor(Math.random()*notes.length)];
-
- g.gain.setValueAtTime(0, audioCtx.currentTime);
- g.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 0.2);
- g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.4);
-
- osc.connect(g);
- g.connect(gainNode);
- osc.start();
- osc.stop(audioCtx.currentTime + 1.5);
-}
-
-/* OPEN INVITE */
-function openInvite(){
- document.querySelector('.cover').classList.add('hide');
-
- // RESUME AUDIO (mobile fix)
- if(!audioCtx){audioCtx = new (window.AudioContext || window.webkitAudioContext)();}
- if(audioCtx.state === 'suspended'){audioCtx.resume();}
-
- playMusic();
- flowers();
- sparkles();
-}
-
-/* FLOWERS */
-function flowers(){
- for(let i=0;i<25;i++){
-  let f=document.createElement('div');
-  f.className='flower';
-  f.innerText='🌸';
-  f.style.left=Math.random()*100+'vw';
-  f.style.animationDuration=5+Math.random()*5+'s';
-  document.body.appendChild(f);
- }
-}
-
-/* SPARKLES */
-function sparkles(){
- for(let i=0;i<30;i++){
-  let s=document.createElement('div');
-  s.className='sparkle';
-  s.style.left=Math.random()*100+'%';
-  s.style.top=Math.random()*100+'%';
-  document.querySelector('.card').appendChild(s);
- }
-}
-</script>
-
-</body>
-</html>
+ font-size

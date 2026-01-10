@@ -6,42 +6,38 @@
 <title>Simant Sanskar Invitation</title>
 
 <style>
-/* PAGE BACKGROUND OUTSIDE CARD */
 html,body{
  margin:0;
  height:100%;
- background:#fff9e7; /* light cream outside card */
+ background:#f7efe6;
  display:flex;
  justify-content:center;
  align-items:center;
- overflow:hidden;
  font-family:'Georgia', serif;
- color:#4a2f1f;
+ overflow:hidden;
 }
 
-/* TAP TO OPEN */
+/* TAP COVER */
 .cover{
  position:fixed;
  inset:0;
- background:#fff9e7; /* same light cream outside card */
+ background:#f7efe6;
  display:flex;
  flex-direction:column;
  justify-content:center;
  align-items:center;
- color:#d4a017; 
+ color:#b30000;
  z-index:100;
  cursor:pointer;
- transition:1s ease;
+ transition:1s;
+ text-align:center;
+ padding:20px;
 }
-.cover.hide{
- opacity:0;
- pointer-events:none;
-}
+.cover.hide{opacity:0;pointer-events:none;}
 .cover .tap{
- margin-top:18px;
- width:70px;
- height:70px;
- border:2px solid #d4a017;
+ margin-top:16px;
+ width:70px;height:70px;
+ border:2px solid #b30000;
  border-radius:50%;
  display:flex;
  align-items:center;
@@ -58,277 +54,176 @@ html,body{
  width:94vw;
  max-width:420px;
  max-height:92vh;
- background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7);
- border-radius:22px;
- box-shadow:0 0 30px rgba(212,160,23,0.45);
+ border-radius:24px;
+ background:linear-gradient(135deg,#eaf6ff,#ffe9f1,#fff6e8);
+ box-shadow:0 12px 30px rgba(0,0,0,0.12);
  position:relative;
  overflow-y:auto;
 }
 
-/* BACKGROUND INSIDE CARD */
-.inside-bg{
- position:absolute;
- inset:0;
- background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7);
- border-radius:22px;
-}
-
 /* CONTENT */
 .content{
- position:relative;
- z-index:2;
- padding:20px;
+ padding:22px;
  text-align:center;
- color:#4a2f1f;
+ color:#b30000;
 }
 
+/* TITLES */
 .main-title{
- font-size:28px;
- color:#d4a017; 
+ font-size:30px;
+ color:#b30000;
  font-weight:700;
- margin:10px 0;
- animation:glow 2.5s ease-in-out infinite alternate;
+ margin:12px 0;
 }
-
 .name{
  font-size:22px;
+ color:#b30000;
  font-weight:700;
- color:#d4a017;
- text-shadow:0 0 6px #d4a017;
- margin:6px 0;
- animation:glow 2.5s ease-in-out infinite alternate;
+ margin:8px 0;
 }
 
-@keyframes glow{
- 0%{text-shadow:0 0 6px #d4a017;}
- 50%{text-shadow:0 0 14px #ffd966, 0 0 20px #d4a017;}
- 100%{text-shadow:0 0 6px #d4a017;}
-}
-
+/* TEXT */
 .details{
  font-size:16px;
  line-height:1.8;
- color:#4a2f1f;
+ color:#b30000;
 }
+
+/* SEPARATOR */
 .gold-line{
  height:1px;
- background:linear-gradient(to right, transparent, #d4a017, transparent);
+ background:linear-gradient(to right, transparent,#e5c07b,transparent);
  margin:14px 0;
 }
 
 /* MAP BUTTON */
 .map-btn{
- margin:10px 0;
- background:#d4a017;
- color:#fff;
- padding:10px 18px;
- border-radius:20px;
+ margin:12px 0;
+ background:#ffb3b3;
+ color:#8b0000;
+ padding:10px 20px;
+ border-radius:22px;
  font-weight:bold;
- font-size:15px;
- cursor:pointer;
- border:none;
  text-decoration:none;
  display:inline-block;
- transition:all 0.3s ease;
+ transition:.3s;
 }
 .map-btn:hover{
- background:#b58f06;
+ background:#ff9999;
  transform:scale(1.05);
- box-shadow:0 0 12px #ffd966;
 }
 
 /* FOOTER */
 footer{
- font-size:18px;
+ font-size:17px;
  margin-top:14px;
- color:#4a2f1f;
+ color:#8b0000;
  font-weight:bold;
- text-align:center;
- animation:footerGlow 3s ease-in-out infinite alternate;
 }
 
-@keyframes footerGlow{
- 0%{text-shadow:0 0 6px #d4a017;}
- 50%{text-shadow:0 0 12px #ffd966, 0 0 18px #d4a017;}
- 100%{text-shadow:0 0 6px #d4a017;}
-}
-
-/* FLOWERS */
+/* FLOWER PETALS */
 .flower{
  position:fixed;
  top:-30px;
- width:18px;
- height:18px;
- border-radius:50%;
+ width:14px;
+ height:22px;
+ background:radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1);
+ border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
  animation:fall linear infinite;
  pointer-events:none;
+ opacity:0.85;
 }
 @keyframes fall{
  to{transform:translateY(110vh) rotate(360deg);}
-}
-
-/* SPARKLES */
-.sparkle{
- position:absolute;
- width:6px;
- height:6px;
- background:#d4a017;
- border-radius:50%;
- animation:twinkle 2s infinite;
-}
-@keyframes twinkle{
- 0%,100%{opacity:0}
- 50%{opacity:1}
-}
-
-/* DESKTOP */
-@media(min-width:768px){
- .details{font-size:17px}
- .main-title{font-size:32px}
- .map-btn{font-size:17px;padding:12px 20px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- TAP SCREEN -->
+<!-- COVER PAGE -->
 <div class="cover" onclick="openInvite()">
- <h2>Tap to Open Invitation</h2>
+ <h2>રાઠી પરિવાર નું<br>વ્હાલ ભર્યુ નિમંત્રણ</h2>
  <div class="tap">👆</div>
 </div>
 
 <!-- CARD -->
 <div class="card">
- <div class="inside-bg"></div>
  <div class="content">
 
-   <div class="details">
-     શ્રી ગણેશાય નમઃ<br>
-     શ્રી સચ્ચિયાય માતાય નમઃ
-   </div>
+ <div class="details">
+ શ્રી ગણેશાય નમઃ<br>
+ શ્રી સચ્ચિયાય માતાય નમઃ
+ </div>
 
-   <div class="main-title">સીમંત સંસ્કાર</div>
+ <div class="main-title">સીમંત સંસ્કાર</div>
 
-   <div class="details">
-     અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
-     ચિ. યોગેશ ના ધર્મપત્ની
-   </div>
+ <div class="details">
+ અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
+ ચિ. યોગેશ ના ધર્મપત્ની
+ </div>
 
-   <div class="name">અ. સૌ. મેઘના</div>
+ <div class="name">અ. સૌ. મેઘના</div>
 
-   <div class="details">
-     ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
-     રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.<br>
-     તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
-   </div>
+ <div class="details">
+ ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
+ રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે<br>
+ <b>સવાર ૧૧:૦૦ થી બપોરે ૧:૦૦ વાગ્યા સુધી</b><br>
+ રાખેલ છે. તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
+ </div>
 
-   <div class="gold-line"></div>
+ <div class="gold-line"></div>
 
-   <div class="details">
-     <b>શુભ સ્થળ :</b><br>
-     The Vibe X Banquet,<br>
-     Near Tapovan Circle,<br>
-     Ahmedabad
-   </div>
+ <div class="details">
+ <b>શુભ સ્થળ :</b><br>
+ The Vibe X Banquet,<br>
+ Near Tapovan Circle,<br>
+ Ahmedabad
+ </div>
 
-   <!-- MAP LINK -->
-   <a href="https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad" target="_blank" class="map-btn">📍 Google Map</a>
+ <a class="map-btn"
+    href="https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad"
+    target="_blank">
+ 📍 Google Map (Tap to Open)
+ </a>
 
-   <div class="gold-line"></div>
+ <div class="gold-line"></div>
 
-   <div class="details">
-     ઘર માં ખુશી ની આહટ સાથે,<br>
-     નાના મહેમાન ના સ્વાગત માટે,<br>
-     ઉત્સુકતા થી રાહ જોઈ રહ્યા છે,<br>
-     ક્રિયાંશ અને કાવ્યા
-   </div>
+ <div class="details">
+ ઘર માં ખુશી ની આહટ સાથે,<br>
+ નાના મહેમાન ના સ્વાગત માટે,<br>
+ ઉત્સુકતા થી રાહ જોઈ રહ્યા છે,<br>
+ ક્રિયાંશ અને કાવ્યા
+ </div>
 
-   <footer>
-     પરિવાર ની ખુશીમાં સહભાગી થવા આવો,<br>
-     મહેમાનને આશીર્વાદ આપો.<br>
-     અંજલી અને સાહિલ
-   </footer>
+ <footer>
+ પરિવાર ની ખુશીમાં સહભાગી થવા આવો,<br>
+ વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
+ અંજલી અને સાહિલ
+ </footer>
 
  </div>
 </div>
 
+<!-- SOFT FLUTE MUSIC -->
+<audio id="flute" loop>
+ <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_36e3a40f62.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-let audioCtx;
-let drone, gainNode;
-let chantInterval;
-
-function playMusic(){
- if(!audioCtx){
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-  gainNode = audioCtx.createGain();
-  gainNode.gain.value = 0.04;
-  gainNode.connect(audioCtx.destination);
-
-  drone = audioCtx.createOscillator();
-  drone.type = "sine";
-  drone.frequency.value = 136.1; 
-  drone.connect(gainNode);
-  drone.start();
-
-  chantInterval = setInterval(playChant, 2000);
- }else{
-  audioCtx.resume();
- }
-}
-
-function playChant(){
- let osc = audioCtx.createOscillator();
- let g = audioCtx.createGain();
-
- osc.type = "sine";
- let notes = [272.2, 288, 305, 324]; 
- osc.frequency.value = notes[Math.floor(Math.random()*notes.length)];
-
- g.gain.setValueAtTime(0, audioCtx.currentTime);
- g.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 0.2);
- g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.4);
-
- osc.connect(g);
- g.connect(gainNode);
- osc.start();
- osc.stop(audioCtx.currentTime + 1.5);
-}
-
 function openInvite(){
  document.querySelector('.cover').classList.add('hide');
- if(!audioCtx){audioCtx = new (window.AudioContext || window.webkitAudioContext)();}
- if(audioCtx.state === 'suspended'){audioCtx.resume();}
- playMusic();
+ document.getElementById('flute').play();
  flowers();
- sparkles();
 }
 
-/* FLOWERS */
 function flowers(){
- const colors = ['#ffdce7','#d0f0ff']; // pink and light blue
- for(let i=0;i<25;i++){
+ for(let i=0;i<30;i++){
   let f=document.createElement('div');
   f.className='flower';
-  f.style.backgroundColor = colors[i%2]; // alternate pink/blue
-  f.style.width = '18px';
-  f.style.height = '18px';
-  f.style.borderRadius = '50%';
-  f.style.left = Math.random()*100+'vw';
-  f.style.animationDuration = 5+Math.random()*5+'s';
+  f.style.left=Math.random()*100+'vw';
+  f.style.animationDuration=6+Math.random()*6+'s';
   document.body.appendChild(f);
- }
-}
-
-/* SPARKLES */
-function sparkles(){
- for(let i=0;i<30;i++){
-  let s=document.createElement('div');
-  s.className='sparkle';
-  s.style.left=Math.random()*100+'%';
-  s.style.top=Math.random()*100+'%';
-  document.querySelector('.card').appendChild(s);
  }
 }
 </script>

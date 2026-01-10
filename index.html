@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Godh Bharai Invitation</title>
+<title>Simant Sanskar Invitation</title>
 
 <style>
 html,body{
@@ -17,7 +17,6 @@ html,body{
  font-family:'Georgia', serif;
 }
 
-/* CARD – MOBILE PERFECT */
 .card{
  width:94vw;
  max-width:380px;
@@ -30,7 +29,6 @@ html,body{
  -webkit-overflow-scrolling:touch;
 }
 
-/* KRISHNA–RADHA ART BACKGROUND (NO IMAGE) */
 .inside-bg{
  position:absolute;
  inset:0;
@@ -42,7 +40,6 @@ html,body{
  z-index:1;
 }
 
-/* CONTENT */
 .content{
  position:relative;
  z-index:2;
@@ -52,27 +49,26 @@ html,body{
 }
 
 .title{
- font-size:26px;
+ font-size:22px;
  color:#ffd966;
  margin-bottom:6px;
 }
 
-.subtitle{
- font-size:20px;
- color:#f5deb3;
- margin-bottom:10px;
+.main-title{
+ font-size:28px;
+ color:#ffd966;
+ font-weight:700;
+ margin:10px 0;
 }
 
-/* MEGHNA – 22px GLOW */
 .name{
  font-size:22px;
  font-weight:700;
  color:#ffd966;
  text-shadow:
   0 0 6px #d4af37,
-  0 0 12px #d4af37,
-  0 0 18px rgba(212,175,55,0.7);
- margin:10px 0;
+  0 0 12px #d4af37;
+ margin:6px 0;
 }
 
 .details{
@@ -87,15 +83,12 @@ html,body{
  margin:14px 0;
 }
 
-/* KRISHNA – RADHA SYMBOLS */
-.deity{
- display:flex;
- justify-content:space-between;
- font-size:26px;
- margin:6px 0;
+footer{
+ font-size:13px;
+ margin-top:14px;
+ color:#ccc;
 }
 
-/* MUSIC BUTTON */
 button{
  margin-top:14px;
  background:#d4af37;
@@ -108,102 +101,87 @@ button{
  cursor:pointer;
 }
 
-/* FOOTER */
-footer{
- font-size:13px;
- margin-top:14px;
- color:#ccc;
-}
-
-/* SMALL PHONE ADJUST */
 @media (max-height:700px){
  .details{font-size:15px;}
- .title{font-size:24px;}
+ .main-title{font-size:24px;}
 }
 </style>
 </head>
+
 <body>
 
-<!-- Flowers -->
-<script>
-for(let i=0;i<24;i++){
- let f=document.createElement("div");
- f.className="flower";
- f.innerHTML="🌸";
- f.style.left=Math.random()*100+"vw";
- f.style.animationDuration=(6+Math.random()*6)+"s";
- document.body.appendChild(f);
-}
-</script>
-
-<!-- MUSIC (Mobile Safe) -->
-<audio id="bgm" preload="auto">
- <source src="https://cdn.pixabay.com/audio/2023/03/30/audio_0f7f1c9b2a.mp3" type="audio/mpeg">
-</audio>
-
-<div class="wrap">
-<div class="card" onclick="openCard()">
-
-<!-- FRONT -->
-<div class="border" id="front">
- <div class="title">
-  શ્રી ગણેશાય નમઃ<br>
-  શ્રી સચ્ચિયાય માતાય નમઃ
- </div>
- <div class="tap">✨ Tap to Open ✨</div>
-</div>
-
-<!-- INSIDE -->
-<div id="inside" class="hidden">
+<div class="card">
  <div class="inside-bg"></div>
 
- <div class="border">
-  <div class="subtitle">સીમંત સંસ્કાર</div>
+ <div class="content">
 
-  <div class="details">
-   અ. સૌ. જયશ્રીબેન અને રાજેશ હરિલાલ રાઠી ના સુપુત્ર<br>
-   ચિ. યોગેશ ના ધર્મપત્ની<br>
+   <div class="details">
+     શ્રી ગણેશાય નમઃ<br>
+     શ્રી સચ્ચિયાય માતાય નમઃ
+   </div>
 
-   <div class="name">અ. સૌ. મેઘના</div><br>
+   <div class="main-title">સીમંત સંસ્કાર</div>
 
-   ના સીમંત વિધિનું શુભ મુહૂર્ત<br>
-   સંવત ૨૦૮૨, માઘ સુદ સાતમ<br>
-   <b>રવિવાર તા. 25/01/2026</b><br><br>
+   <div class="details">
+     અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
+     ચિ. યોગેશ ના ધર્મપત્ની
+   </div>
 
-   આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
-  </div>
+   <div class="name">અ. સૌ. મેઘના</div>
 
-  <div class="details">
-   📍 <b>શુભ સ્થળ:</b><br>
-   The Vibe X Banquet,<br>
-   Tapovan Circle નજીક,<br>
-   અમદાવાદ
-  </div>
+   <div class="details">
+     ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
+     રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.<br>
+     તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
+   </div>
 
-  <div class="qr">
-   <div>📍 Scan for Location</div>
-   <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.google.com/maps/search/The+Vibe+X+Banquet+Tapovan+Circle+Ahmedabad">
-  </div>
+   <div class="gold-line"></div>
+
+   <div class="details">
+     <b>શુભ સ્થળ :</b><br>
+     The Vibe X Banquet,<br>
+     Near Tapovan Circle,<br>
+     Ahmedabad
+   </div>
+
+   <div class="gold-line"></div>
+
+   <div class="details">
+     ઘર માં ખુશી ની આહટ સાથે,<br>
+     નાના મહેમાન ના સ્વાગત માટે,<br>
+     ઉત્સુકતા થી રાહ જોઈ રહ્યા છે,<br>
+     ક્રિયાંશ અને કાવ્યા
+   </div>
+
+   <footer>
+     પરિવાર ની ખુશી માં સહભાગી થવા આવો,<br>
+     વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
+     <b>અંજલી અને સાહિલ</b>
+   </footer>
+
+   <button onclick="playMusic()">🎵 Play Music</button>
+
  </div>
 </div>
 
-</div>
-</div>
-
 <script>
-function openCard(){
- document.getElementById("front").classList.add("hidden");
- document.getElementById("inside").classList.remove("hidden");
-
- const music = document.getElementById("bgm");
- music.muted = true;
- music.play().then(()=>{
-   music.muted = false;
- });
+let audioCtx, osc, gain;
+function playMusic(){
+ if(!audioCtx){
+   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+   osc = audioCtx.createOscillator();
+   gain = audioCtx.createGain();
+   osc.type = "sine";
+   osc.frequency.value = 396;
+   gain.gain.value = 0.035;
+   osc.connect(gain);
+   gain.connect(audioCtx.destination);
+   osc.start();
+ }else{
+   audioCtx.resume();
+ }
 }
 </script>
 
 </body>
-
 </html>
-

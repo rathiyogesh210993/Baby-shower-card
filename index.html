@@ -9,25 +9,25 @@
 html,body{
  margin:0;
  height:100%;
- background:#fff8e7; /* light cream background */
+ background:linear-gradient(135deg,#fff8e7,#ffdce7,#d0f0ff);
  display:flex;
  justify-content:center;
  align-items:center;
  overflow:hidden;
  font-family:'Georgia', serif;
- color:#4a3f35; /* dark text for readability */
+ color:#4a3f35; 
 }
 
 /* TAP TO OPEN */
 .cover{
  position:fixed;
  inset:0;
- background:linear-gradient(135deg,#fff8e7,#fff1c8);
+ background:linear-gradient(135deg,#fff8e7,#ffdce7,#d0f0ff);
  display:flex;
  flex-direction:column;
  justify-content:center;
  align-items:center;
- color:#d4a017; /* golden highlight */
+ color:#d4a017; 
  z-index:100;
  cursor:pointer;
  transition:1s ease;
@@ -57,7 +57,7 @@ html,body{
  width:94vw;
  max-width:420px;
  max-height:92vh;
- background:#fff1c8; /* soft yellow */
+ background:#fff1c8; 
  border-radius:22px;
  box-shadow:0 0 30px rgba(212,160,23,0.45);
  position:relative;
@@ -84,17 +84,27 @@ html,body{
 
 .main-title{
  font-size:28px;
- color:#d4a017; /* gold title */
+ color:#d4a017; 
  font-weight:700;
  margin:10px 0;
+ animation:glow 2.5s ease-in-out infinite alternate;
 }
+
 .name{
  font-size:22px;
  font-weight:700;
  color:#d4a017;
  text-shadow:0 0 6px #d4a017;
  margin:6px 0;
+ animation:glow 2.5s ease-in-out infinite alternate;
 }
+
+@keyframes glow{
+ 0%{text-shadow:0 0 6px #d4a017;}
+ 50%{text-shadow:0 0 14px #ffd966, 0 0 20px #d4a017;}
+ 100%{text-shadow:0 0 6px #d4a017;}
+}
+
 .details{
  font-size:16px;
  line-height:1.8;
@@ -104,6 +114,27 @@ html,body{
  height:1px;
  background:linear-gradient(to right, transparent, #d4a017, transparent);
  margin:14px 0;
+}
+
+/* MAP BUTTON */
+.map-btn{
+ margin:10px 0;
+ background:#d4a017;
+ color:#fff;
+ padding:10px 18px;
+ border-radius:20px;
+ font-weight:bold;
+ font-size:15px;
+ cursor:pointer;
+ border:none;
+ text-decoration:none;
+ display:inline-block;
+ transition:all 0.3s ease;
+}
+.map-btn:hover{
+ background:#b58f06;
+ transform:scale(1.05);
+ box-shadow:0 0 12px #ffd966;
 }
 
 /* FOOTER */
@@ -141,17 +172,11 @@ footer{
  50%{opacity:1}
 }
 
-/* QR IMAGE */
-.qr img{
- width:80px;
- height:80px;
- margin-top:6px;
-}
-
 /* DESKTOP */
 @media(min-width:768px){
  .details{font-size:17px}
  .main-title{font-size:32px}
+ .map-btn{font-size:17px;padding:12px 20px;}
 }
 </style>
 </head>
@@ -198,10 +223,8 @@ footer{
      Ahmedabad
    </div>
 
-   <!-- MAP QR -->
-   <div class="qr">
-     <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad">
-   </div>
+   <!-- MAP LINK -->
+   <a href="https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad" target="_blank" class="map-btn">📍 Google Map</a>
 
    <div class="gold-line"></div>
 
@@ -214,8 +237,8 @@ footer{
 
    <footer>
      પરિવાર ની ખુશીમાં સહભાગી થવા આવો,<br>
-   વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
-અંજલી અને સાહિલ
+     મહેમાનને આશીર્વાદ આપો.<br>
+     અંજલી અને સાહિલ
    </footer>
 
  </div>
@@ -273,17 +296,20 @@ function openInvite(){
  sparkles();
 }
 
+/* FLOWERS */
 function flowers(){
+ const colors = ['🌸','💮'];
  for(let i=0;i<25;i++){
   let f=document.createElement('div');
   f.className='flower';
-  f.innerText='🌸';
+  f.innerText = colors[i%2];
   f.style.left=Math.random()*100+'vw';
   f.style.animationDuration=5+Math.random()*5+'s';
   document.body.appendChild(f);
  }
 }
 
+/* SPARKLES */
 function sparkles(){
  for(let i=0;i<30;i++){
   let s=document.createElement('div');

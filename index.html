@@ -6,7 +6,6 @@
 <title>Simant Sanskar Invitation</title>
 
 <style>
-/* BASE */
 html,body{
  margin:0;
  height:100%;
@@ -18,7 +17,7 @@ html,body{
  font-family:'Georgia', serif;
 }
 
-/* TAP TO OPEN COVER */
+/* TAP TO OPEN */
 .cover{
  position:fixed;
  inset:0;
@@ -30,17 +29,14 @@ html,body{
  color:#ffd966;
  z-index:100;
  cursor:pointer;
- transition:1s;
+ transition:1s ease;
 }
 .cover.hide{
  opacity:0;
  pointer-events:none;
 }
-.cover h1{
- font-size:26px;
-}
-.tap{
- margin-top:20px;
+.cover .tap{
+ margin-top:18px;
  width:70px;
  height:70px;
  border:2px solid gold;
@@ -52,17 +48,17 @@ html,body{
 }
 @keyframes pulse{
  0%{transform:scale(1);opacity:1}
- 100%{transform:scale(1.4);opacity:0.3}
+ 100%{transform:scale(1.4);opacity:.3}
 }
 
 /* CARD */
 .card{
- width:92vw;
+ width:94vw;
  max-width:420px;
  max-height:92vh;
  background:#0b1f3f;
- border-radius:24px;
- box-shadow:0 0 40px rgba(212,175,55,.5);
+ border-radius:22px;
+ box-shadow:0 0 30px rgba(212,175,55,0.45);
  position:relative;
  overflow-y:auto;
 }
@@ -72,37 +68,37 @@ html,body{
  position:absolute;
  inset:0;
  background:
- radial-gradient(circle at top left, rgba(212,175,55,.35), transparent 55%),
- radial-gradient(circle at top right, rgba(212,175,55,.35), transparent 55%),
- linear-gradient(rgba(8,26,56,.92),rgba(8,26,56,.92));
+  radial-gradient(circle at left 20%, rgba(212,175,55,0.35), transparent 55%),
+  radial-gradient(circle at right 20%, rgba(212,175,55,0.35), transparent 55%),
+  linear-gradient(rgba(8,26,56,0.92),rgba(8,26,56,0.92));
 }
 
 /* CONTENT */
 .content{
  position:relative;
  z-index:2;
- padding:22px;
+ padding:20px;
  text-align:center;
  color:#fff;
 }
 
-/* TEXT */
 .main-title{
  font-size:28px;
  color:#ffd966;
- font-weight:bold;
+ font-weight:700;
  margin:10px 0;
 }
 .name{
  font-size:22px;
+ font-weight:700;
  color:#ffd966;
- font-weight:bold;
  text-shadow:0 0 10px gold;
  margin:6px 0;
 }
 .details{
  font-size:16px;
  line-height:1.8;
+ color:#eaeaea;
 }
 .gold-line{
  height:1px;
@@ -110,13 +106,18 @@ html,body{
  margin:14px 0;
 }
 
-/* BUTTON */
+footer{
+ font-size:13px;
+ margin-top:14px;
+ color:#ccc;
+}
+
 button{
  margin-top:14px;
- background:gold;
+ background:#d4af37;
  color:#081a38;
  border:none;
- padding:10px 22px;
+ padding:10px 18px;
  border-radius:20px;
  font-weight:bold;
  cursor:pointer;
@@ -131,9 +132,7 @@ button{
  pointer-events:none;
 }
 @keyframes fall{
- to{
-  transform:translateY(110vh) rotate(360deg);
- }
+ to{transform:translateY(110vh) rotate(360deg);}
 }
 
 /* SPARKLES */
@@ -150,81 +149,126 @@ button{
  50%{opacity:1}
 }
 
-/* QR */
-.qr{
- margin-top:12px;
-}
-
-/* DESKTOP OPTIMIZE */
-@media (min-width:768px){
- .card{max-width:480px}
- .main-title{font-size:32px}
+/* DESKTOP */
+@media(min-width:768px){
  .details{font-size:17px}
+ .main-title{font-size:32px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- TAP COVER -->
+<!-- TAP SCREEN -->
 <div class="cover" onclick="openInvite()">
- <h1>Tap to Open Invitation</h1>
+ <h2>Tap to Open Invitation</h2>
  <div class="tap">👆</div>
 </div>
 
 <!-- CARD -->
 <div class="card">
  <div class="inside-bg"></div>
-
  <div class="content">
 
-  શ્રી ગણેશાય નમઃ<br>
-  શ્રી સચ્ચિયાય માતાય નમઃ
+   <div class="details">
+     શ્રી ગણેશાય નમઃ<br>
+     શ્રી સચ્ચિયાય માતાય નમઃ
+   </div>
 
-  <div class="main-title">સીમંત સંસ્કાર</div>
+   <div class="main-title">સીમંત સંસ્કાર</div>
 
-  અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
-  ચિ. યોગેશ ના ધર્મપત્ની
+   <div class="details">
+     અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
+     ચિ. યોગેશ ના ધર્મપત્ની
+   </div>
 
-  <div class="name">અ. સૌ. મેઘના</div>
+   <div class="name">અ. સૌ. મેઘના</div>
 
-  ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
-  રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.
+   <div class="details">
+     ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
+     રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.<br>
+     તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
+   </div>
 
-  <div class="gold-line"></div>
+   <div class="gold-line"></div>
 
-  <b>શુભ સ્થળ</b><br>
-  The Vibe X Banquet,<br>
-  Near Tapovan Circle, Ahmedabad
+   <div class="details">
+     <b>શુભ સ્થળ :</b><br>
+     The Vibe X Banquet,<br>
+     Near Tapovan Circle,<br>
+     Ahmedabad
+   </div>
 
-  <div class="qr">
-   <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad">
-  </div>
+   <!-- MAP QR -->
+   <img width="120"
+    src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad">
 
-  <button onclick="playMusic()">🎵 Play Music</button>
+   <div class="gold-line"></div>
+
+   <div class="details">
+     ઘર માં ખુશી ની આહટ સાથે,<br>
+     નાના મહેમાન ના સ્વાગત માટે,<br>
+     ઉત્સુકતા થી રાહ જોઈ રહ્યા છે,<br>
+     ક્રિયાંશ અને કાવ્યા
+   </div>
+
+   <footer>
+     પરિવાર ની ખુશી માં સહભાગી થવા આવો,<br>
+     વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
+     <b>અંજલી અને સાહિલ</b>
+   </footer>
+
+   <button onclick="playMusic()">🎵 Maa Bhakti Music</button>
 
  </div>
 </div>
 
 <script>
-/* MUSIC */
-let audioCtx,osc,gain;
+/* ===== MA AAMBA DEVOTIONAL MUSIC (NO FILE) ===== */
+let audioCtx;
+let drone, gainNode;
+let chantInterval;
+
 function playMusic(){
  if(!audioCtx){
-  audioCtx=new(window.AudioContext||webkitAudioContext)();
-  osc=audioCtx.createOscillator();
-  gain=audioCtx.createGain();
-  osc.frequency.value=396;
-  gain.gain.value=0.035;
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.start();
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  gainNode = audioCtx.createGain();
+  gainNode.gain.value = 0.04;
+  gainNode.connect(audioCtx.destination);
+
+  /* TANPURA DRONE */
+  drone = audioCtx.createOscillator();
+  drone.type = "sine";
+  drone.frequency.value = 136.1; // devotional base Sa
+  drone.connect(gainNode);
+  drone.start();
+
+  chantInterval = setInterval(playChant, 2000);
  }else{
   audioCtx.resume();
  }
 }
 
-/* OPEN */
+function playChant(){
+ let osc = audioCtx.createOscillator();
+ let g = audioCtx.createGain();
+
+ osc.type = "sine";
+ let notes = [272.2, 288, 305, 324]; // soft Maa notes
+ osc.frequency.value = notes[Math.floor(Math.random()*notes.length)];
+
+ g.gain.setValueAtTime(0, audioCtx.currentTime);
+ g.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 0.2);
+ g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.4);
+
+ osc.connect(g);
+ g.connect(gainNode);
+ osc.start();
+ osc.stop(audioCtx.currentTime + 1.5);
+}
+
+/* OPEN INVITE */
 function openInvite(){
  document.querySelector('.cover').classList.add('hide');
  playMusic();

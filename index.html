@@ -9,13 +9,13 @@
 html,body{
  margin:0;
  height:100%;
- background:linear-gradient(135deg,#fff8e7,#ffdce7,#d0f0ff); /* page background */
+ background:linear-gradient(135deg,#fff8e7,#ffdce7,#d0f0ff);
  display:flex;
  justify-content:center;
  align-items:center;
  overflow:hidden;
  font-family:'Georgia', serif;
- color:#4a2f1f; /* dark brown for readability */
+ color:#4a2f1f;
 }
 
 /* TAP TO OPEN */
@@ -57,7 +57,7 @@ html,body{
  width:94vw;
  max-width:420px;
  max-height:92vh;
- background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7); /* inside card gradient */
+ background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7); /* full inside card gradient */
  border-radius:22px;
  box-shadow:0 0 30px rgba(212,160,23,0.45);
  position:relative;
@@ -68,10 +68,7 @@ html,body{
 .inside-bg{
  position:absolute;
  inset:0;
- background:
-  radial-gradient(circle at left 20%, rgba(212,160,23,0.2), transparent 55%),
-  radial-gradient(circle at right 20%, rgba(212,160,23,0.2), transparent 55%),
-  linear-gradient(rgba(255,248,231,0.92), rgba(255,241,200,0.92));
+ background:linear-gradient(135deg,#ffdce7,#d0f0ff,#fff8e7); /* same gradient for full inside */
  border-radius:22px;
 }
 
@@ -81,7 +78,7 @@ html,body{
  z-index:2;
  padding:20px;
  text-align:center;
- color:#4a2f1f; /* dark brown */
+ color:#4a2f1f;
 }
 
 .main-title{
@@ -110,7 +107,7 @@ html,body{
 .details{
  font-size:16px;
  line-height:1.8;
- color:#4a2f1f; /* dark brown */
+ color:#4a2f1f;
 }
 .gold-line{
  height:1px;
@@ -143,7 +140,7 @@ html,body{
 footer{
  font-size:18px;
  margin-top:14px;
- color:#4a2f1f; /* dark brown */
+ color:#4a2f1f;
  font-weight:bold;
  text-align:center;
  animation:footerGlow 3s ease-in-out infinite alternate;
@@ -307,11 +304,11 @@ function openInvite(){
 
 /* FLOWERS */
 function flowers(){
- const colors = ['🌸','💮'];
+ const colors = ['💮','#d0f0ff','🌸','#ffdce7']; // pink + blue + flower emojis
  for(let i=0;i<25;i++){
   let f=document.createElement('div');
   f.className='flower';
-  f.innerText = colors[i%2];
+  f.innerText = colors[i%4];
   f.style.left=Math.random()*100+'vw';
   f.style.animationDuration=5+Math.random()*5+'s';
   document.body.appendChild(f);

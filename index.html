@@ -106,12 +106,15 @@ html,body{
  margin:14px 0;
 }
 
+/* FOOTER */
 footer{
- font-size:13px;
+ font-size:18px;
  margin-top:14px;
- color:#ccc;
+ color:#ffd966;
+ font-weight:bold;
 }
 
+/* BUTTON */
 button{
  margin-top:14px;
  background:#d4af37;
@@ -147,6 +150,13 @@ button{
 @keyframes twinkle{
  0%,100%{opacity:0}
  50%{opacity:1}
+}
+
+/* QR IMAGE */
+.qr img{
+ width:80px; /* smaller */
+ height:80px;
+ margin-top:6px;
 }
 
 /* DESKTOP */
@@ -200,8 +210,9 @@ button{
    </div>
 
    <!-- MAP QR -->
-   <img width="120"
-    src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad">
+   <div class="qr">
+     <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad">
+   </div>
 
    <div class="gold-line"></div>
 
@@ -213,9 +224,8 @@ button{
    </div>
 
    <footer>
-     પરિવાર ની ખુશી માં સહભાગી થવા આવો,<br>
-     વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
-     <b>અંજલી અને સાહિલ</b>
+     આવો, **અંજલી અને સાહિલ** ની ખુશીમાં સહભાગી થવા,<br>
+     મહેમાનને આશીર્વાદ આપો
    </footer>
 
    <button onclick="playMusic()">🎵 Maa Bhakti Music</button>
@@ -224,7 +234,7 @@ button{
 </div>
 
 <script>
-/* ===== MA AAMBA DEVOTIONAL MUSIC (NO FILE) ===== */
+/* ===== MA AAMBA DEVOTIONAL MUSIC ===== */
 let audioCtx;
 let drone, gainNode;
 let chantInterval;
@@ -240,7 +250,7 @@ function playMusic(){
   /* TANPURA DRONE */
   drone = audioCtx.createOscillator();
   drone.type = "sine";
-  drone.frequency.value = 136.1; // devotional base Sa
+  drone.frequency.value = 136.1; 
   drone.connect(gainNode);
   drone.start();
 
@@ -255,7 +265,7 @@ function playChant(){
  let g = audioCtx.createGain();
 
  osc.type = "sine";
- let notes = [272.2, 288, 305, 324]; // soft Maa notes
+ let notes = [272.2, 288, 305, 324]; 
  osc.frequency.value = notes[Math.floor(Math.random()*notes.length)];
 
  g.gain.setValueAtTime(0, audioCtx.currentTime);

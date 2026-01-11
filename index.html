@@ -35,48 +35,74 @@ html,body{
 }
 .cover.hide{opacity:0;pointer-events:none;}
 
-/* RIBBON */
+/* ================= RIBBON ================= */
 .ribbon{
  position:relative;
  margin-top:30px;
- padding:14px 40px;
+ padding:14px 44px;
  background:#b30000;
  color:#fff;
  font-weight:bold;
  font-size:16px;
  letter-spacing:1px;
+ overflow:hidden;
  animation:ribbonPulse 1.5s infinite;
+}
+
+.ribbon span{
+ position:relative;
+ display:inline-block;
+ z-index:1;
 }
 
 .ribbon:before,
 .ribbon:after{
  content:"";
  position:absolute;
- top:50%;
- transform:translateY(-50%);
- border:14px solid transparent;
+ top:0;
+ width:50%;
+ height:100%;
+ background:#8b0000;
+ z-index:0;
 }
 
 .ribbon:before{
- left:-28px;
- border-right-color:#8b0000;
+ left:-25%;
+ clip-path:polygon(100% 0,0 50%,100% 100%);
 }
 .ribbon:after{
- right:-28px;
- border-left-color:#8b0000;
+ right:-25%;
+ clip-path:polygon(0 0,100% 50%,0 100%);
 }
 
+/* pulse */
 @keyframes ribbonPulse{
  0%{transform:scale(1)}
  100%{transform:scale(1.06)}
 }
 
-/* Ribbon opening */
+/* ================= OPEN EFFECT ================= */
 .cover.opening .ribbon{
- animation:ribbonOpen .8s forwards;
+ animation:none;
 }
-@keyframes ribbonOpen{
- to{transform:scaleX(0);opacity:0;}
+.cover.opening .ribbon span{
+ animation:ribbonTextFade .4s forwards;
+}
+.cover.opening .ribbon::before{
+ animation:openLeft .8s forwards;
+}
+.cover.opening .ribbon::after{
+ animation:openRight .8s forwards;
+}
+
+@keyframes openLeft{
+ to{transform:translateX(-140%) rotate(-8deg);opacity:0;}
+}
+@keyframes openRight{
+ to{transform:translateX(140%) rotate(8deg);opacity:0;}
+}
+@keyframes ribbonTextFade{
+ to{opacity:0;}
 }
 
 /* ================= CARD ================= */
@@ -173,7 +199,7 @@ footer{
 <!-- COVER -->
 <div class="cover" onclick="openInvite()">
  <h2>રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
- <div class="ribbon">Tap to Open</div>
+ <div class="ribbon"><span>Tap to Open</span></div>
 </div>
 
 <!-- CARD -->
@@ -189,7 +215,7 @@ footer{
 
  <div class="details">
  અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
- <b>ચિ. યોગેશ </b>ના ધર્મપત્ની
+ ચિ. <b>યોગેશ</b> ના ધર્મપત્ની
  </div>
 
  <div class="name">અ. સૌ. મેઘના</div>
@@ -247,14 +273,14 @@ footer{
 
 <script>
 function openInvite(){
- const cover = document.querySelector('.cover');
+ const cover=document.querySelector('.cover');
  cover.classList.add('opening');
 
  setTimeout(()=>{
-   cover.classList.add('hide');
-   document.getElementById('flute').play();
-   flowers();
- },700);
+  cover.classList.add('hide');
+  document.getElementById('flute').play();
+  flowers();
+ },800);
 }
 
 function flowers(){

@@ -61,11 +61,24 @@ html,body{
  overflow-y:auto;
 }
 
+/* KRISHNA IMAGE OVERLAY (background unchanged) */
+.card::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:url("krishna.jpg") center/contain no-repeat;
+ opacity:0.15;
+ pointer-events:none;
+ z-index:0;
+}
+
 /* CONTENT */
 .content{
  padding:22px;
  text-align:center;
  color:#b30000;
+ position:relative;
+ z-index:1;
 }
 
 /* TITLES */
@@ -170,7 +183,6 @@ footer{
 
  <div class="gold-line"></div>
 
- <!-- BHOJAN -->
  <div class="details">
  <b>ભોજન સમારંભ</b><br>
  સમય : સવારે ૧૧ થી બપોરે ૧ વાગ્યા સુધી 
@@ -209,9 +221,9 @@ footer{
  </div>
 </div>
 
-<!-- SOFT FLUTE -->
+<!-- LOCAL FLUTE MUSIC -->
 <audio id="flute" loop>
- <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_36e3a40f62.mp3">
+ <source src="flute.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -233,5 +245,3 @@ function flowers(){
 
 </body>
 </html>
-
-

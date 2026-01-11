@@ -64,68 +64,95 @@ html, body {
 @keyframes floatText { 0%{transform: translateY(0px);} 100%{transform: translateY(-15px);} }
 @keyframes glowText { 0%{text-shadow:0 0 15px #ffd700,0 0 25px #ff8c00;} 100%{text-shadow:0 0 35px #fffacd,0 0 55px #ff6347;} }
 
-/* ================= RIBBON ================= */
-.ribbon-wrapper {
-  position: relative;
-  margin-top: 30px;
-  width: 220px;
-  height: 60px;
-  perspective: 1000px;
+/* ================= GIFT WRAP RIBBON ================= */
+.ribbon-horizontal, .ribbon-vertical {
+  position: absolute;
+  background: linear-gradient(135deg, #ffd700 0%, #ffdf70 50%, #ffd700 100%);
   z-index: 2;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: transform 1s ease, opacity 1s ease;
 }
-.ribbon {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  animation: floatRibbon 3s ease-in-out infinite alternate;
-}
-.ribbon-center {
-  position: relative;
-  background: linear-gradient(135deg, #ffd700 0%, #ffdf70 25%, #ffd700 50%, #ffdf70 75%, #ffd700 100%);
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 1px;
-  padding: 14px 0;
+.ribbon-horizontal {
+  top: 50%;
+  left: 0;
   width: 100%;
-  text-align: center;
-  transition: all 0.6s ease;
-  transform-origin: center;
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 10% 100%, 0 70%);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
-  overflow: hidden;
+  height: 24px;
+  transform: translateY(-50%);
 }
-.ribbon-center.pulse { animation: pulseRibbon 1.5s infinite; }
-.ribbon-center::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0; left: -100%;
-  width: 300%;
-  height: 100%;
-  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,224,0.8) 50%, rgba(255,255,255,0) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 2.5s infinite;
-}
-.ribbon-left, .ribbon-right {
-  position: absolute;
+.ribbon-vertical {
   top: 0;
-  width: 40px;
+  left: 50%;
+  width: 24px;
   height: 100%;
-  background: linear-gradient(135deg, #daa520 0%, #ffd700 50%, #ffdf70 100%);
-  z-index: 1;
-  box-shadow: inset 0 2px 5px rgba(255,255,255,0.3);
+  transform: translateX(-50%);
 }
-.ribbon-left { left: -40px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
-.ribbon-right { right: -40px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
-@keyframes floatRibbon { 0% {transform:translateY(0px) rotateZ(-2deg);} 50%{transform:translateY(2px) rotateZ(1deg);} 100%{transform:translateY(0px) rotateZ(-2deg);} }
-@keyframes pulseRibbon {0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);} }
-@keyframes shimmer {0%{left:-100%;}50%{left:100%;}100%{left:100%;}}
+/* Golden Glow behind bow */
+.bow-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 223, 0, 0.8), rgba(255, 223, 0, 0) 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  z-index: 2;
+  transition: transform 1s ease, opacity 1s ease;
+  filter: blur(8px);
+}
+
+/* 3D Bow */
+.ribbon-bow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+.bow-left, .bow-right, .bow-center {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffdf70 50%, #ffd700 100%);
+  border-radius: 50% 50% 0 0;
+  top: 0;
+  transform-origin: bottom center;
+  transition: transform 1s ease, opacity 1s ease;
+}
+.bow-left { left: -15px; transform: rotate(-45deg); }
+.bow-right { left: 15px; transform: rotate(45deg); }
+.bow-center { left: 50%; transform: translateX(-50%); border-radius: 50%; }
+
+/* OPENING ANIMATION */
+.cover.opening .ribbon-horizontal {
+  transform: translateY(-50%) translateX(-100vw);
+  opacity: 0;
+}
+.cover.opening .ribbon-vertical {
+  transform: translateX(-50%) translateY(-100vh);
+  opacity: 0;
+}
+.cover.opening .bow-left {
+  transform: rotateZ(-180deg) rotateX(60deg) translate(-60px, -20px);
+  opacity: 0;
+}
+.cover.opening .bow-right {
+  transform: rotateZ(180deg) rotateX(-60deg) translate(60px, -20px);
+  opacity: 0;
+}
+.cover.opening .bow-center {
+  transform: scale(0);
+  opacity: 0;
+}
+/* Glow animation */
+.cover.opening .bow-glow {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 1;
+}
 
 /* ================= CARD ================= */
 .card{
@@ -133,12 +160,8 @@ html, body {
   max-width:420px;
   max-height:92vh;
   border-radius:28px;
-
-  background: linear-gradient(
-      rgba(255, 239, 184, 0.75),
-      rgba(255, 228, 241, 0.75)
-    ),
-    url("krishna.jpg") center/cover no-repeat;
+  background: linear-gradient(rgba(255, 239, 184, 0.75), rgba(255, 228, 241, 0.75)),
+              url("krishna.jpg") center/cover no-repeat;
   backdrop-filter: blur(3px);
   box-shadow: 0 15px 35px rgba(0,0,0,0.25), 0 0 25px rgba(255,215,0,0.4) inset;
   position: relative;
@@ -190,12 +213,19 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
   <div class="cover-bg"></div>
   <canvas id="sparkle"></canvas>
   <h2 class="cover-title">રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
-  <div class="ribbon-wrapper">
-    <div class="ribbon">
-      <div class="ribbon-left"></div>
-      <div class="ribbon-center pulse" data-text="Tap to Open">Tap to Open</div>
-      <div class="ribbon-right"></div>
-    </div>
+
+  <!-- Gift Wrap Ribbon -->
+  <div class="ribbon-horizontal"></div>
+  <div class="ribbon-vertical"></div>
+
+  <!-- Golden Glow -->
+  <div class="bow-glow"></div>
+
+  <!-- 3D Bow -->
+  <div class="ribbon-bow">
+    <div class="bow-left"></div>
+    <div class="bow-right"></div>
+    <div class="bow-center"></div>
   </div>
 </div>
 

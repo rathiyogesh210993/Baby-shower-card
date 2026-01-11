@@ -54,88 +54,105 @@ html, body {
 /* COVER TITLE */
 .cover-title {
   position: relative;
-  z-index: 2;
-  color: #ffd700; /* golden title */
+  z-index: 3;
+  color: #ffd700; /* premium golden color */
   font-size: 42px;
   font-weight: 900;
-  text-shadow: 0 0 20px #ffd700, 0 0 30px #ff8c00;
+  text-shadow: 0 0 25px #ffd700, 0 0 40px #ff8c00;
   animation: floatText 3s ease-in-out infinite alternate, glowText 2s infinite alternate;
-  margin-bottom: 40px;
-  line-height:1.2;
+  margin-top: 50px;
+  text-align: center;
 }
 @keyframes floatText { 0%{transform: translateY(0px);} 100%{transform: translateY(-15px);} }
-@keyframes glowText { 0%{text-shadow:0 0 10px #ffd700,0 0 20px #ff8c00;} 100%{text-shadow:0 0 30px #fffacd,0 0 50px #ff6347;} }
+@keyframes glowText { 0%{text-shadow:0 0 15px #ffd700,0 0 25px #ff8c00;} 100%{text-shadow:0 0 35px #fffacd,0 0 55px #ff6347;} }
 
-/* ================= GIFT RIBBON 3D CURL ================= */
+/* ================= RIBBON + BIG BOW ================= */
 .ribbon-wrapper {
   position: relative;
-  margin-top: 30px;
-  width: 260px;
-  height: 80px;
+  width: 90%;
+  max-width: 400px;
+  height: 120px;
   perspective: 1200px;
   z-index: 2;
 }
 
 .ribbon {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(135deg, #b30000 0%, #ff4d4d 25%, #ff9999 50%, #b30000 75%, #ff4d4d 100%);
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .ribbon-center {
   position: relative;
-  background: linear-gradient(135deg, #b30000 0%, #ff4d4d 25%, #ff9999 50%, #b30000 75%, #ff4d4d 100%);
-  color: #fff;
   font-weight: bold;
   font-size: 18px;
-  letter-spacing: 1px;
-  padding: 16px 0;
-  width: 100%;
-  text-align: center;
-  transform-origin: center;
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 10% 100%, 0 70%);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-  overflow: hidden;
+  color: #fff;
+  padding: 10px 0;
   z-index: 2;
 }
 
 .ribbon-left, .ribbon-right {
   position: absolute;
   top: 0;
-  width: 50px;
+  width: 40px;
   height: 100%;
   background: linear-gradient(135deg, #8b0000 0%, #b30000 50%, #ff4d4d 100%);
   z-index: 1;
-  box-shadow: inset 0 2px 5px rgba(255,255,255,0.3);
-  transform-origin: center;
-  border-radius: 50% 50% 0 0;
+}
+.ribbon-left { left: -40px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+.ribbon-right { right: -40px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+
+/* Big Bow */
+.bow {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 40px;
+  z-index: 3;
 }
 
-.ribbon-left { left: -50px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
-.ribbon-right { right: -50px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
-
-/* Ribbon open animation */
-.cover.opening .ribbon-center { animation: centerLift 1s forwards; }
-.cover.opening .ribbon-left { animation: leftCurl 1s forwards cubic-bezier(.55,.05,.68,.19); }
-.cover.opening .ribbon-right { animation: rightCurl 1s forwards cubic-bezier(.55,.05,.68,.19); }
-
-@keyframes centerLift {
-  0% { transform: rotateX(0deg) scale(1); opacity: 1; }
-  50% { transform: rotateX(-45deg) scale(1.05); opacity: 0.9; }
-  100% { transform: translateY(-80px) rotateX(-90deg) scale(1); opacity: 0; }
+.bow-loop {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+  border-radius: 50%;
+  transform-origin: center center;
 }
-@keyframes leftCurl {
-  0% { transform: rotateY(0deg) rotateZ(0deg) translateX(0) translateY(0); }
-  50% { transform: rotateY(-60deg) rotateZ(-30deg) translateX(-50%) translateY(-20%); }
-  100% { transform: rotateY(-120deg) rotateZ(-60deg) translateX(-180%) translateY(-60%); opacity: 0; }
+
+.bow-left { left: -20px; transform: rotate(-20deg); }
+.bow-right { right: -20px; transform: rotate(20deg); }
+
+.bow-knot {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: #b30000;
+  border-radius: 50%;
+  transform: translateX(-50%);
 }
-@keyframes rightCurl {
-  0% { transform: rotateY(0deg) rotateZ(0deg) translateX(0) translateY(0); }
-  50% { transform: rotateY(60deg) rotateZ(30deg) translateX(50%) translateY(-20%); }
-  100% { transform: rotateY(120deg) rotateZ(60deg) translateX(180%) translateY(-60%); opacity: 0; }
+
+/* Bow Open Animation */
+.cover.opening .bow-left { animation: bowLeftOpen 1s forwards; }
+.cover.opening .bow-right { animation: bowRightOpen 1s forwards; }
+
+@keyframes bowLeftOpen {
+  0% { transform: rotate(-20deg) scale(1); }
+  100% { transform: rotate(-80deg) scale(0.8) translate(-50px, -30px); opacity:0; }
+}
+@keyframes bowRightOpen {
+  0% { transform: rotate(20deg) scale(1); }
+  100% { transform: rotate(80deg) scale(0.8) translate(50px, -30px); opacity:0; }
 }
 
 /* ================= CARD ================= */
@@ -144,7 +161,7 @@ html, body {
   max-width:420px;
   max-height:92vh;
   border-radius:24px;
-  background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("krishna.jpg") center/cover no-repeat;
+  background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url("krishna.jpg") center/cover no-repeat; /* reduced opacity */
   box-shadow:0 12px 30px rgba(0,0,0,0.12);
   position:relative;
   overflow-y:auto;
@@ -168,7 +185,6 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
   top:-30px;
   width:14px;
   height:22px;
-  background: radial-gradient(circle at 30% 30%, #ffd6e6, #87cefa);
   border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
   animation:fall linear infinite;
   pointer-events:none;
@@ -194,14 +210,23 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
 <div class="cover" onclick="openInvite()">
   <div class="cover-bg"></div>
   <canvas id="sparkle"></canvas>
-  <h2 class="cover-title">રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
+
+  <!-- Ribbon and Bow at Top -->
   <div class="ribbon-wrapper">
     <div class="ribbon">
       <div class="ribbon-left"></div>
       <div class="ribbon-center pulse" data-text="Tap to Open">Tap to Open</div>
       <div class="ribbon-right"></div>
+      <div class="bow">
+        <div class="bow-loop bow-left"></div>
+        <div class="bow-loop bow-right"></div>
+        <div class="bow-knot"></div>
+      </div>
     </div>
   </div>
+
+  <!-- Cover Title -->
+  <h2 class="cover-title">રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
 </div>
 
 <!-- CARD -->
@@ -265,17 +290,18 @@ function openInvite(){
 
 // FLOWERS
 function flowers(){
-  for(let i=0;i<40;i++){
+  const colors = [
+    "radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1)", // pink
+    "radial-gradient(circle at 30% 30%, #87cefa, #00bfff)", // blue
+    "radial-gradient(circle at 30% 30%, #fffacd, #ffdd00)"  // yellow
+  ];
+  for(let i=0;i<30;i++){
     let f=document.createElement('div');
     f.className='flower';
     f.style.left=Math.random()*100+'vw';
     f.style.width=10+Math.random()*14+'px';
     f.style.height=12+Math.random()*22+'px';
-    // Pink, Blue, Yellow petals
-    let rand=Math.random();
-    if(rand<0.33) f.style.background="radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1)";
-    else if(rand<0.66) f.style.background="radial-gradient(circle at 30% 30%, #87cefa, #00bfff)";
-    else f.style.background="radial-gradient(circle at 30% 30%, #fffacd, #ffd700)";
+    f.style.background = colors[Math.floor(Math.random()*colors.length)];
     f.style.animationDuration=4+Math.random()*5+'s';
     document.body.appendChild(f);
   }

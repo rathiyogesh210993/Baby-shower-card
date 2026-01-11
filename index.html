@@ -53,16 +53,15 @@ html, body {
 /* COVER TITLE */
 .cover-title {
   position: relative;
-  z-index: 6; /* on top */
-  color: #fffacd;
-  font-size: 42px; 
+  z-index: 6;
+  color: #ff69b4; /* changed to deep pink */
+  font-size: 50px; /* increased font size */
   font-weight: 900;
-  text-shadow: 0 0 30px #ffd700, 0 0 40px #ff8c00;
+  text-shadow: 0 0 35px #ffb6c1, 0 0 50px #ff69b4; /* updated glow */
   animation: floatText 3s ease-in-out infinite alternate, glowText 2s infinite alternate;
   margin-bottom: 80px;
 }
-@keyframes floatText { 0%{transform: translateY(0px);} 100%{transform: translateY(-20px);} }
-@keyframes glowText { 0%{text-shadow:0 0 20px #ffd700,0 0 30px #ff8c00;} 100%{text-shadow:0 0 40px #fffacd,0 0 60px #ff6347;} }
+
 
 /* ================= GIFT WRAP RIBBON ================= */
 .ribbon-horizontal, .ribbon-vertical {
@@ -373,3 +372,4 @@ drawParticles();
 </script>
 </body>
 </html>
+

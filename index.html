@@ -57,23 +57,13 @@ html,body{
  max-width:420px;
  max-height:92vh;
  border-radius:24px;
- background:linear-gradient(135deg,#f0f9ff,#eaf6ff,#ffe9f1,#fff6e8);
+ background:
+   linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)),
+   url("krishna.jpg") center/cover no-repeat;
  box-shadow:0 12px 30px rgba(0,0,0,0.12);
  position:relative;
  overflow-y:auto;
 }
-
-/* KRISHNA IMAGE OVERLAY (background unchanged) */
-.card::before{
- content:"";
- position:absolute;
- inset:0;
- background:url("krishna.jpg") center/contain no-repeat;
- opacity:0.15;
- pointer-events:none;
- z-index:0;
-}
-
 /* CONTENT */
 .content{
  padding:22px;
@@ -247,4 +237,5 @@ function flowers(){
 
 </body>
 </html>
+
 

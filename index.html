@@ -9,9 +9,7 @@
 html,body{
  margin:0;
  height:100%;
- background:
-   linear-gradient(rgba(247,239,230,0.90), rgba(247,239,230,0.90)),
-   url("krishna.jpg") center/cover no-repeat fixed;
+ background:#f7efe6;
  display:flex;
  justify-content:center;
  align-items:center;
@@ -19,7 +17,7 @@ html,body{
  overflow:hidden;
 }
 
-/* COVER */
+/* ================= COVER ================= */
 .cover{
  position:fixed;
  inset:0;
@@ -36,22 +34,52 @@ html,body{
  padding:20px;
 }
 .cover.hide{opacity:0;pointer-events:none;}
-.cover .tap{
- margin-top:16px;
- width:70px;height:70px;
- border:2px solid #b30000;
- border-radius:50%;
- display:flex;
- align-items:center;
- justify-content:center;
- animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
- 0%{transform:scale(1);opacity:1}
- 100%{transform:scale(1.4);opacity:.3}
+
+/* RIBBON */
+.ribbon{
+ position:relative;
+ margin-top:30px;
+ padding:14px 40px;
+ background:#b30000;
+ color:#fff;
+ font-weight:bold;
+ font-size:16px;
+ letter-spacing:1px;
+ animation:ribbonPulse 1.5s infinite;
 }
 
-/* CARD */
+.ribbon:before,
+.ribbon:after{
+ content:"";
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ border:14px solid transparent;
+}
+
+.ribbon:before{
+ left:-28px;
+ border-right-color:#8b0000;
+}
+.ribbon:after{
+ right:-28px;
+ border-left-color:#8b0000;
+}
+
+@keyframes ribbonPulse{
+ 0%{transform:scale(1)}
+ 100%{transform:scale(1.06)}
+}
+
+/* Ribbon opening */
+.cover.opening .ribbon{
+ animation:ribbonOpen .8s forwards;
+}
+@keyframes ribbonOpen{
+ to{transform:scaleX(0);opacity:0;}
+}
+
+/* ================= CARD ================= */
 .card{
  width:94vw;
  max-width:420px;
@@ -64,13 +92,12 @@ html,body{
  position:relative;
  overflow-y:auto;
 }
+
 /* CONTENT */
 .content{
  padding:22px;
  text-align:center;
  color:#b30000;
- position:relative;
- z-index:1;
 }
 
 /* TITLES */
@@ -123,7 +150,7 @@ footer{
  font-weight:bold;
 }
 
-/* FLOWER PETALS */
+/* FLOWERS */
 .flower{
  position:fixed;
  top:-30px;
@@ -143,10 +170,10 @@ footer{
 
 <body>
 
-<!-- COVER PAGE -->
+<!-- COVER -->
 <div class="cover" onclick="openInvite()">
  <h2>રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
- <div class="tap">👆</div>
+ <div class="ribbon">Tap to Open</div>
 </div>
 
 <!-- CARD -->
@@ -162,7 +189,7 @@ footer{
 
  <div class="details">
  અ. સૌ. જયશ્રીબેન અને રાજેશ હરિભાઈ રાઠી ના સુપુત્ર<br>
- ચિ. યોગેશ ના ધર્મપત્ની
+ <b>ચિ. યોગેશ </b>ના ધર્મપત્ની
  </div>
 
  <div class="name">અ. સૌ. મેઘના</div>
@@ -177,7 +204,7 @@ footer{
 
  <div class="details">
  <b>ભોજન સમારંભ</b><br>
- સમય : સવારે ૧૧ થી બપોરે ૧ વાગ્યા સુધી 
+ સમય : સવારે ૧૧ થી બપોરે ૧ વાગ્યા સુધી
  </div>
 
  <div class="gold-line"></div>
@@ -213,17 +240,23 @@ footer{
  </div>
 </div>
 
-<!-- LOCAL FLUTE MUSIC -->
+<!-- LOCAL MUSIC -->
 <audio id="flute" loop>
  <source src="flute.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function openInvite(){
- document.querySelector('.cover').classList.add('hide');
- document.getElementById('flute').play();
- flowers();
+ const cover = document.querySelector('.cover');
+ cover.classList.add('opening');
+
+ setTimeout(()=>{
+   cover.classList.add('hide');
+   document.getElementById('flute').play();
+   flowers();
+ },700);
 }
+
 function flowers(){
  for(let i=0;i<30;i++){
   let f=document.createElement('div');
@@ -237,5 +270,3 @@ function flowers(){
 
 </body>
 </html>
-
-

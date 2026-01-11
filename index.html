@@ -54,105 +54,81 @@ html, body {
 /* COVER TITLE */
 .cover-title {
   position: relative;
-  z-index: 3;
-  color: #ffd700; /* premium golden color */
-  font-size: 42px;
+  z-index: 2;
+  color: #ffd700; /* changed colour */
+  font-size: 42px; /* larger font size */
   font-weight: 900;
-  text-shadow: 0 0 25px #ffd700, 0 0 40px #ff8c00;
+  text-shadow: 0 0 20px #ffd700, 0 0 30px #ff4500;
   animation: floatText 3s ease-in-out infinite alternate, glowText 2s infinite alternate;
-  margin-top: 50px;
-  text-align: center;
+  margin-bottom: 80px;
 }
 @keyframes floatText { 0%{transform: translateY(0px);} 100%{transform: translateY(-15px);} }
-@keyframes glowText { 0%{text-shadow:0 0 15px #ffd700,0 0 25px #ff8c00;} 100%{text-shadow:0 0 35px #fffacd,0 0 55px #ff6347;} }
+@keyframes glowText { 0%{text-shadow:0 0 10px #ffd700,0 0 20px #ff4500;} 100%{text-shadow:0 0 30px #fffacd,0 0 50px #ff6347;} }
 
-/* ================= RIBBON + BIG BOW ================= */
+/* ================= RIBBON ================= */
 .ribbon-wrapper {
   position: relative;
-  width: 90%;
-  max-width: 400px;
-  height: 120px;
-  perspective: 1200px;
+  width: 250px;
+  height: 80px;
+  perspective: 1000px;
   z-index: 2;
 }
-
 .ribbon {
-  position: relative;
-  width: 100%;
-  height: 40px;
-  background: linear-gradient(135deg, #b30000 0%, #ff4d4d 25%, #ff9999 50%, #b30000 75%, #ff4d4d 100%);
-  border-radius: 8px;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
 .ribbon-center {
-  position: relative;
-  font-weight: bold;
-  font-size: 18px;
+  width: 100%;
+  height: 24px;
+  background: linear-gradient(135deg, #b30000 0%, #ff4d4d 50%, #ff9999 100%);
   color: #fff;
-  padding: 10px 0;
-  z-index: 2;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 14px 0;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
 
-.ribbon-left, .ribbon-right {
+/* Bow elements */
+.bow-loop, .bow-knot {
   position: absolute;
-  top: 0;
-  width: 40px;
-  height: 100%;
-  background: linear-gradient(135deg, #8b0000 0%, #b30000 50%, #ff4d4d 100%);
-  z-index: 1;
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff9999 50%, #b30000 100%);
+  background-size: 200px 100%;
+  border-radius: 50% 50% 40% 40%;
+  transform-origin: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  animation: satinShimmer 2s infinite linear;
 }
-.ribbon-left { left: -40px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
-.ribbon-right { right: -40px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
-
-/* Big Bow */
-.bow {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 40px;
-  z-index: 3;
+@keyframes satinShimmer {
+  0% { background-position: -60px 0; }
+  50% { background-position: 60px 0; }
+  100% { background-position: -60px 0; }
 }
 
-.bow-loop {
-  position: absolute;
-  top: 0;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
-  border-radius: 50%;
-  transform-origin: center center;
+/* Bounce animation */
+.cover.bounce .ribbon { transform: scaleY(1.1); }
+.cover.bounce .bow-loop { transform: scale(1.15) rotateZ(var(--rotate)); }
+.cover.bounce .bow-knot { transform: scale(1.2); box-shadow: 0 6px 15px rgba(0,0,0,0.35); }
+
+/* Ribbon unwrap */
+.cover.opening .ribbon-center { animation: ribbonUnwrap 1s forwards ease-in-out; }
+.cover.opening .bow-loop { animation: bowOpen 1s forwards ease-in-out; }
+.cover.opening .bow-knot { animation: bowOpen 1s forwards ease-in-out; }
+
+@keyframes ribbonUnwrap {
+  0% { transform: rotateX(0deg) scaleY(1); }
+  100% { transform: rotateX(-90deg) scaleY(0.8); opacity:0; }
 }
-
-.bow-left { left: -20px; transform: rotate(-20deg); }
-.bow-right { right: -20px; transform: rotate(20deg); }
-
-.bow-knot {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: #b30000;
-  border-radius: 50%;
-  transform: translateX(-50%);
-}
-
-/* Bow Open Animation */
-.cover.opening .bow-left { animation: bowLeftOpen 1s forwards; }
-.cover.opening .bow-right { animation: bowRightOpen 1s forwards; }
-
-@keyframes bowLeftOpen {
-  0% { transform: rotate(-20deg) scale(1); }
-  100% { transform: rotate(-80deg) scale(0.8) translate(-50px, -30px); opacity:0; }
-}
-@keyframes bowRightOpen {
-  0% { transform: rotate(20deg) scale(1); }
-  100% { transform: rotate(80deg) scale(0.8) translate(50px, -30px); opacity:0; }
+@keyframes bowOpen {
+  0% { transform: scale(1) rotateZ(0deg); opacity:1; }
+  100% { transform: scale(0.8) rotateZ(45deg); opacity:0; }
 }
 
 /* ================= CARD ================= */
@@ -161,7 +137,7 @@ html, body {
   max-width:420px;
   max-height:92vh;
   border-radius:24px;
-  background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url("krishna.jpg") center/cover no-repeat; /* reduced opacity */
+  background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url("krishna.jpg") center/cover no-repeat;
   box-shadow:0 12px 30px rgba(0,0,0,0.12);
   position:relative;
   overflow-y:auto;
@@ -185,6 +161,7 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
   top:-30px;
   width:14px;
   height:22px;
+  background: radial-gradient(circle at 30% 30%, #ffd6e6, #87cefa);
   border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
   animation:fall linear infinite;
   pointer-events:none;
@@ -201,7 +178,6 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
   animation:rise 3s forwards;
 }
 @keyframes rise{ 0%{transform:translateY(0) scale(0.5); opacity:1;}50%{opacity:1;}100%{transform:translateY(-200px) scale(1.2) rotate(360deg); opacity:0;} }
-
 </style>
 </head>
 <body>
@@ -210,23 +186,12 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
 <div class="cover" onclick="openInvite()">
   <div class="cover-bg"></div>
   <canvas id="sparkle"></canvas>
-
-  <!-- Ribbon and Bow at Top -->
+  <h2 class="cover-title">રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
   <div class="ribbon-wrapper">
     <div class="ribbon">
-      <div class="ribbon-left"></div>
       <div class="ribbon-center pulse" data-text="Tap to Open">Tap to Open</div>
-      <div class="ribbon-right"></div>
-      <div class="bow">
-        <div class="bow-loop bow-left"></div>
-        <div class="bow-loop bow-right"></div>
-        <div class="bow-knot"></div>
-      </div>
     </div>
   </div>
-
-  <!-- Cover Title -->
-  <h2 class="cover-title">રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
 </div>
 
 <!-- CARD -->
@@ -275,39 +240,73 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
 </audio>
 
 <script>
-// OPEN COVER
+// ================= BOW ELEMENT CREATION =================
+function createBow() {
+  const ribbon = document.querySelector('.ribbon-wrapper');
+
+  const loopLeft = document.createElement('div');
+  loopLeft.className = 'bow-loop';
+  loopLeft.style.left = '-30px';
+  loopLeft.style.top = '-20px';
+  loopLeft.style.setProperty('--rotate', '-20deg');
+
+  const loopRight = document.createElement('div');
+  loopRight.className = 'bow-loop';
+  loopRight.style.right = '-30px';
+  loopRight.style.top = '-20px';
+  loopRight.style.setProperty('--rotate', '20deg');
+
+  const knot = document.createElement('div');
+  knot.className = 'bow-knot';
+  knot.style.left = 'calc(50% - 20px)';
+  knot.style.top = '-10px';
+  knot.style.width = '40px';
+  knot.style.height = '30px';
+
+  ribbon.appendChild(loopLeft);
+  ribbon.appendChild(loopRight);
+  ribbon.appendChild(knot);
+}
+createBow();
+
+// ================= OPEN COVER =================
 function openInvite(){
-  const cover=document.querySelector('.cover');
-  cover.classList.add('opening');
+  const cover = document.querySelector('.cover');
+  cover.classList.add('bounce');
+  
+  setTimeout(()=>{
+    cover.classList.remove('bounce');
+    cover.classList.add('opening');
+  }, 300);
+
   setTimeout(()=>{
     cover.classList.add('hide');
     document.querySelector('.card').style.opacity='1';
     document.getElementById('flute').play();
     flowers();
     babyShower();
-  },1000);
+  }, 1300);
 }
 
-// FLOWERS
+// ================= FLOWERS =================
 function flowers(){
-  const colors = [
-    "radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1)", // pink
-    "radial-gradient(circle at 30% 30%, #87cefa, #00bfff)", // blue
-    "radial-gradient(circle at 30% 30%, #fffacd, #ffdd00)"  // yellow
-  ];
   for(let i=0;i<30;i++){
     let f=document.createElement('div');
     f.className='flower';
     f.style.left=Math.random()*100+'vw';
     f.style.width=10+Math.random()*14+'px';
     f.style.height=12+Math.random()*22+'px';
-    f.style.background = colors[Math.floor(Math.random()*colors.length)];
+    f.style.background = Math.random()>0.33 
+      ? "radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1)" 
+      : (Math.random()>0.5 
+          ? "radial-gradient(circle at 30% 30%, #87cefa, #00bfff)" 
+          : "radial-gradient(circle at 30% 30%, #ffffa0, #ffd700)");
     f.style.animationDuration=4+Math.random()*5+'s';
     document.body.appendChild(f);
   }
 }
 
-// BABY SHOWER CONFETTI
+// ================= BABY SHOWER CONFETTI =================
 function babyShower(){
   const names=['🎈','🎉','🍼','⭐','💛'];
   for(let i=0;i<20;i++){
@@ -321,7 +320,7 @@ function babyShower(){
   }
 }
 
-// SPARKLE PARTICLES
+// ================= SPARKLE PARTICLES =================
 const canvas=document.getElementById('sparkle');
 const ctx=canvas.getContext('2d');
 canvas.width=window.innerWidth;

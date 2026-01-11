@@ -7,189 +7,237 @@
 
 <style>
 html,body{
- margin:0;
- height:100%;
- background:#f7efe6;
- display:flex;
- justify-content:center;
- align-items:center;
- font-family:'Georgia', serif;
- overflow:hidden;
+  margin:0;
+  height:100%;
+  background:#f7efe6;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Georgia', serif;
+  overflow:hidden;
 }
 
 /* ================= COVER ================= */
 .cover{
- position:fixed;
- inset:0;
- background:#f7efe6;
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
- color:#b30000;
- z-index:100;
- cursor:pointer;
- transition:1s;
- text-align:center;
- padding:20px;
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#b30000;
+  z-index:100;
+  cursor:pointer;
+  text-align:center;
+  padding:20px;
 }
-.cover.hide{opacity:0;pointer-events:none;}
+.cover.hide{opacity:0;pointer-events:none;transition:0.8s;}
+
+/* COVER BACKGROUND */
+.cover-bg{
+  position:absolute;
+  inset:0;
+  background: url("krishna.jpg") center/cover no-repeat;
+  filter: brightness(0.5);
+  z-index:0;
+}
+
+/* SPARKLE CANVAS */
+#sparkle{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+}
+
+/* COVER TITLE */
+.cover-title{
+  position:relative;
+  z-index:2;
+  color:#fffacd;
+  font-size:36px;
+  font-weight:900;
+  text-shadow: 0 0 20px #ffd700, 0 0 30px #ff4500;
+  animation: floatText 3s ease-in-out infinite alternate, glowText 2s infinite alternate;
+  margin-bottom: 60px;
+}
+@keyframes floatText{
+ 0%{transform: translateY(0px);}
+ 100%{transform: translateY(-15px);}
+}
+@keyframes glowText{
+ 0% {text-shadow: 0 0 10px #ffd700, 0 0 20px #ff4500;}
+ 100% {text-shadow: 0 0 30px #fffacd, 0 0 50px #ff6347;}
+}
 
 /* ================= RIBBON ================= */
+.ribbon-wrapper{
+  position:relative;
+  margin-top:30px;
+  width:220px;
+  height:50px;
+  perspective:1000px;
+  z-index:2;
+}
 .ribbon{
- position:relative;
- margin-top:30px;
- padding:14px 44px;
- background:#b30000;
- color:#fff;
- font-weight:bold;
- font-size:16px;
- letter-spacing:1px;
- overflow:hidden;
- animation:ribbonPulse 1.5s infinite;
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+}
+.ribbon-center{
+  background:#b30000;
+  color:#fff;
+  font-weight:bold;
+  font-size:16px;
+  letter-spacing:1px;
+  padding:12px 0;
+  z-index:2;
+  width:100%;
+  text-align:center;
+  transition: all 0.6s ease;
+}
+.ribbon-left,
+.ribbon-right{
+  position:absolute;
+  top:0;
+  width:50%;
+  height:100%;
+  background:#8b0000;
+  z-index:1;
+}
+.ribbon-left{left:0;}
+.ribbon-right{right:0;}
+
+/* Ribbon pulse */
+.pulse{
+  animation: pulseRibbon 1.5s infinite;
+}
+@keyframes pulseRibbon{
+ 0%{transform: scale(1);}
+ 50%{transform: scale(1.1);}
+ 100%{transform: scale(1);}
 }
 
-.ribbon span{
- position:relative;
- display:inline-block;
- z-index:1;
+/* Ribbon opening animation */
+.cover.opening .ribbon-center{
+  opacity:0;
+  transform:scale(0.8);
+  transition:all 0.5s ease;
 }
-
-.ribbon:before,
-.ribbon:after{
- content:"";
- position:absolute;
- top:0;
- width:50%;
- height:100%;
- background:#8b0000;
- z-index:0;
+.cover.opening .ribbon-left{
+  animation:leftOpen 0.8s forwards cubic-bezier(.55,.05,.68,.19);
 }
-
-.ribbon:before{
- left:-25%;
- clip-path:polygon(100% 0,0 50%,100% 100%);
+.cover.opening .ribbon-right{
+  animation:rightOpen 0.8s forwards cubic-bezier(.55,.05,.68,.19);
 }
-.ribbon:after{
- right:-25%;
- clip-path:polygon(0 0,100% 50%,0 100%);
+@keyframes leftOpen{
+ 0% {transform:translateX(0) rotate(0deg); opacity:1;}
+ 50% {transform:translateX(-20%) rotate(-5deg);}
+ 100% {transform:translateX(-150%) rotate(-20deg); opacity:0;}
 }
-
-/* pulse */
-@keyframes ribbonPulse{
- 0%{transform:scale(1)}
- 100%{transform:scale(1.06)}
-}
-
-/* ================= OPEN EFFECT ================= */
-.cover.opening .ribbon{
- animation:none;
-}
-.cover.opening .ribbon span{
- animation:ribbonTextFade .4s forwards;
-}
-.cover.opening .ribbon::before{
- animation:openLeft .8s forwards;
-}
-.cover.opening .ribbon::after{
- animation:openRight .8s forwards;
-}
-
-@keyframes openLeft{
- to{transform:translateX(-140%) rotate(-8deg);opacity:0;}
-}
-@keyframes openRight{
- to{transform:translateX(140%) rotate(8deg);opacity:0;}
-}
-@keyframes ribbonTextFade{
- to{opacity:0;}
+@keyframes rightOpen{
+ 0% {transform:translateX(0) rotate(0deg); opacity:1;}
+ 50% {transform:translateX(20%) rotate(5deg);}
+ 100% {transform:translateX(150%) rotate(20deg); opacity:0;}
 }
 
 /* ================= CARD ================= */
 .card{
- width:94vw;
- max-width:420px;
- max-height:92vh;
- border-radius:24px;
- background:
-   linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)),
-   url("krishna.jpg") center/cover no-repeat;
- box-shadow:0 12px 30px rgba(0,0,0,0.12);
- position:relative;
- overflow-y:auto;
+  width:94vw;
+  max-width:420px;
+  max-height:92vh;
+  border-radius:24px;
+  background:
+    linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)),
+    url("krishna.jpg") center/cover no-repeat;
+  box-shadow:0 12px 30px rgba(0,0,0,0.12);
+  position:relative;
+  overflow-y:auto;
+  opacity:0;
+  transition:opacity 1s ease;
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
 .content{
- padding:22px;
- text-align:center;
- color:#b30000;
+  padding:22px;
+  text-align:center;
+  color:#b30000;
 }
-
-/* TITLES */
 .main-title{
- font-size:30px;
- font-weight:700;
- margin:12px 0;
+  font-size:30px;
+  font-weight:700;
+  margin:12px 0;
 }
 .name{
- font-size:22px;
- font-weight:700;
- margin:8px 0;
+  font-size:22px;
+  font-weight:700;
+  margin:8px 0;
 }
-
-/* TEXT */
 .details{
- font-size:16px;
- line-height:1.8;
+  font-size:16px;
+  line-height:1.8;
 }
-
-/* LINE */
 .gold-line{
- height:1px;
- background:linear-gradient(to right, transparent,#e5c07b,transparent);
- margin:14px 0;
+  height:1px;
+  background:linear-gradient(to right, transparent,#e5c07b,transparent);
+  margin:14px 0;
 }
-
-/* MAP */
 .map-btn{
- margin:12px 0;
- background:#ffb3b3;
- color:#8b0000;
- padding:10px 20px;
- border-radius:22px;
- font-weight:bold;
- text-decoration:none;
- display:inline-block;
- transition:.3s;
+  margin:12px 0;
+  background:#ffb3b3;
+  color:#8b0000;
+  padding:10px 20px;
+  border-radius:22px;
+  font-weight:bold;
+  text-decoration:none;
+  display:inline-block;
+  transition:.3s;
 }
 .map-btn:hover{
- background:#ff9999;
- transform:scale(1.05);
+  background:#ff9999;
+  transform:scale(1.05);
 }
-
-/* FOOTER */
 footer{
- font-size:17px;
- margin-top:14px;
- color:#8b0000;
- font-weight:bold;
+  font-size:17px;
+  margin-top:14px;
+  color:#8b0000;
+  font-weight:bold;
 }
 
-/* FLOWERS */
+/* ================= FLOWERS ================= */
 .flower{
- position:fixed;
- top:-30px;
- width:14px;
- height:22px;
- background:radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1);
- border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
- animation:fall linear infinite;
- pointer-events:none;
- opacity:0.85;
+  position:fixed;
+  top:-30px;
+  width:14px;
+  height:22px;
+  background:radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1);
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation:fall linear infinite;
+  pointer-events:none;
+  opacity:0.85;
 }
 @keyframes fall{
- to{transform:translateY(110vh) rotate(360deg);}
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* ================= BABY SHOWER CONFETTI ================= */
+.baby-icon{
+  position:absolute;
+  font-size:20px;
+  opacity:0;
+  pointer-events:none;
+  animation:rise 3s forwards;
+}
+@keyframes rise{
+ 0% {transform:translateY(0) scale(0.5); opacity:1;}
+ 50% {opacity:1;}
+ 100% {transform:translateY(-200px) scale(1.2) rotate(360deg); opacity:0;}
 }
 </style>
 </head>
@@ -198,102 +246,150 @@ footer{
 
 <!-- COVER -->
 <div class="cover" onclick="openInvite()">
- <h2>રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
- <div class="ribbon"><span>Tap to Open</span></div>
+  <div class="cover-bg"></div>
+  <canvas id="sparkle"></canvas>
+
+  <h2 class="cover-title">રાઠી પરિવાર નું<br>વ્હાલ ભર્યું નિમંત્રણ</h2>
+
+  <div class="ribbon-wrapper">
+    <div class="ribbon">
+      <div class="ribbon-left"></div>
+      <div class="ribbon-center pulse">Tap to Open</div>
+      <div class="ribbon-right"></div>
+    </div>
+  </div>
 </div>
 
 <!-- CARD -->
 <div class="card">
- <div class="content">
+  <div class="content">
+    <div class="details">
+      શ્રી ગણેશાય નમઃ<br>
+      શ્રી સચ્ચિયાય માતાય નમઃ
+    </div>
 
- <div class="details">
- શ્રી ગણેશાય નમઃ<br>
- શ્રી સચ્ચિયાય માતાય નમઃ
- </div>
+    <div class="main-title">સીમંત સંસ્કાર</div>
 
- <div class="main-title">સીમંત સંસ્કાર</div>
+    <div class="details">
+      <b>અ. સૌ. જયશ્રીબેન</b> અને <b>રાજેશ હરિભાઈ રાઠી</b> ના સુપુત્ર<br>
+      <b>ચિ.યોગેશ</b> ના ધર્મપત્ની
+    </div>
 
- <div class="details">
- <b>અ. સૌ. જયશ્રીબેન</b> અને <b>રાજેશ હરિભાઈ રાઠ</b>ી ના સુપુત્ર<br>
- <b>ચિ. યોગેશ</b> ના ધર્મપત્ની
- </div>
+    <div class="name">અ. સૌ. મેઘના</div>
 
- <div class="name">અ. સૌ. મેઘના</div>
+    <div class="details">
+      ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
+      રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.<br>
+      તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
+    </div>
 
- <div class="details">
- ના સીમંત વિધિનું શુભ મુહૂર્ત સંવત ૨૦૮૨, મહા સુદ સાતમ,<br>
- રવિવાર તા. ૨૫/૦૧/૨૦૨૬ ના શુભ દિવસે રાખેલ છે.<br>
- તો આ શુભ અવસરે આપશ્રી આશીર્વાદ આપવા પધારશો.
- </div>
+    <div class="gold-line"></div>
 
- <div class="gold-line"></div>
+    <div class="details">
+      <b>ભોજન સમારંભ</b><br>
+      સમય : સવારે ૧૧ થી બપોરે ૧ વાગ્યા સુધી
+    </div>
 
- <div class="details">
- <b>ભોજન સમારંભ</b><br>
- સમય : સવારે ૧૧ થી બપોરે ૧ વાગ્યા સુધી
- </div>
+    <div class="gold-line"></div>
 
- <div class="gold-line"></div>
+    <div class="details">
+      <b>શુભ સ્થળ :</b><br>
+      The Vibe X Banquet,<br>
+      Near Tapovan Circle,<br>
+      Ahmedabad
+    </div>
 
- <div class="details">
- <b>શુભ સ્થળ :</b><br>
- The Vibe X Banquet,<br>
- Near Tapovan Circle,<br>
- Ahmedabad
- </div>
+    <a class="map-btn" href="https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad" target="_blank">
+      📍 Google Map (Tap to Open)
+    </a>
 
- <a class="map-btn"
-    href="https://maps.google.com/?q=The+Vibe+X+Banquet+Ahmedabad"
-    target="_blank">
- 📍 Google Map (Tap to Open)
- </a>
+    <div class="gold-line"></div>
 
- <div class="gold-line"></div>
+    <div class="details">
+      ઘર માં ખુશી ની આહટ સાથે,<br>
+      નાના મહેમાન ના સ્વાગત માટે,<br>
+      ઉત્સુકતા થી રાહ જોઈ રહ્યા છે,<br>
+      <b>ક્રિયાંશ</b> અને <b>કાવ્યા</b>
+    </div>
 
- <div class="details">
- ઘર માં ખુશી ની આહટ સાથે,<br>
- નાના મહેમાન ના સ્વાગત માટે,<br>
- ઉત્સુકતા થી રાહ જોઈ રહ્યા છે,<br>
- <b>ક્રિયાંશ</b> અને <b>કાવ્યા</b> 
- </div>
-
- <footer>
- પરિવાર ની ખુશીમાં સહભાગી થવા આવો,<br>
- વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
- - અંજલી અને સાહિલ
- </footer>
-
- </div>
+    <footer>
+      પરિવાર ની ખુશીમાં સહભાગી થવા આવો,<br>
+      વહાલસોયા મહેમાનને આશીર્વાદ આપો.<br>
+      - અંજલી અને સાહિલ
+    </footer>
+  </div>
 </div>
 
 <!-- LOCAL MUSIC -->
 <audio id="flute" loop>
- <source src="flute.mp3" type="audio/mpeg">
+  <source src="flute.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+// COVER RIBBON OPEN
 function openInvite(){
- const cover=document.querySelector('.cover');
- cover.classList.add('opening');
+  const cover = document.querySelector('.cover');
+  cover.classList.add('opening');
 
- setTimeout(()=>{
-  cover.classList.add('hide');
-  document.getElementById('flute').play();
-  flowers();
- },800);
+  setTimeout(()=>{
+    cover.classList.add('hide');
+    document.querySelector('.card').style.opacity='1';
+    document.getElementById('flute').play();
+    flowers();
+    babyShower();
+  },900);
 }
 
+// FLOWERS
 function flowers(){
- for(let i=0;i<30;i++){
-  let f=document.createElement('div');
-  f.className='flower';
-  f.style.left=Math.random()*100+'vw';
-  f.style.animationDuration=6+Math.random()*6+'s';
-  document.body.appendChild(f);
- }
+  for(let i=0;i<30;i++){
+    let f=document.createElement('div');
+    f.className='flower';
+    f.style.left=Math.random()*100+'vw';
+    f.style.width=10+Math.random()*14+'px';
+    f.style.height=12+Math.random()*22+'px';
+    f.style.animationDuration=4+Math.random()*5+'s';
+    document.body.appendChild(f);
+  }
 }
+
+// BABY SHOWER CONFETTI
+function babyShower(){
+  const names = ['🎈','🎉','🍼','⭐','💛'];
+  for(let i=0;i<20;i++){
+    const icon = document.createElement('div');
+    icon.className='baby-icon';
+    icon.innerText = names[Math.floor(Math.random()*names.length)];
+    icon.style.left = Math.random()*80 + 'vw';
+    icon.style.top = Math.random()*80 + 'vh';
+    icon.style.animationDelay = (i*0.1)+'s';
+    document.body.appendChild(icon);
+  }
+}
+
+// SPARKLE PARTICLES
+const canvas = document.getElementById('sparkle');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particles=[];
+for(let i=0;i<100;i++){
+  particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, d:Math.random()*2});
+}
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle = "rgba(255,255,255,"+Math.random()+")";
+    ctx.fill();
+    p.y += p.d;
+    if(p.y>canvas.height){p.y=0;p.x=Math.random()*canvas.width;}
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 </script>
 
 </body>
 </html>
-

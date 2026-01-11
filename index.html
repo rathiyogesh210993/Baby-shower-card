@@ -24,6 +24,7 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #b30000;
   z-index: 100;
   cursor: pointer;
   text-align: center;
@@ -54,25 +55,27 @@ html, body {
 .cover-title {
   position: relative;
   z-index: 2;
-  color: #ffd700; /* new premium golden color */
-  font-size: 42px; /* increased size */
+  color: #ffd700; /* golden title */
+  font-size: 42px;
   font-weight: 900;
-  text-shadow: 0 0 25px #ffda44, 0 0 40px #ff6347;
+  text-shadow: 0 0 20px #ffd700, 0 0 30px #ff8c00;
   animation: floatText 3s ease-in-out infinite alternate, glowText 2s infinite alternate;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  line-height:1.2;
 }
 @keyframes floatText { 0%{transform: translateY(0px);} 100%{transform: translateY(-15px);} }
-@keyframes glowText { 0%{text-shadow:0 0 15px #ffd700,0 0 30px #ff4500;} 100%{text-shadow:0 0 35px #fffacd,0 0 60px #ff6347;} }
+@keyframes glowText { 0%{text-shadow:0 0 10px #ffd700,0 0 20px #ff8c00;} 100%{text-shadow:0 0 30px #fffacd,0 0 50px #ff6347;} }
 
-/* ================= GIFT RIBBON ================= */
+/* ================= GIFT RIBBON 3D CURL ================= */
 .ribbon-wrapper {
   position: relative;
   margin-top: 30px;
   width: 260px;
   height: 80px;
-  perspective: 1000px;
+  perspective: 1200px;
   z-index: 2;
 }
+
 .ribbon {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -81,6 +84,7 @@ html, body {
   align-items: center;
   cursor: pointer;
 }
+
 .ribbon-center {
   position: relative;
   background: linear-gradient(135deg, #b30000 0%, #ff4d4d 25%, #ff9999 50%, #b30000 75%, #ff4d4d 100%);
@@ -91,12 +95,13 @@ html, body {
   padding: 16px 0;
   width: 100%;
   text-align: center;
-  transition: all 0.6s ease;
   transform-origin: center;
   clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 10% 100%, 0 70%);
   box-shadow: 0 6px 12px rgba(0,0,0,0.25);
   overflow: hidden;
+  z-index: 2;
 }
+
 .ribbon-left, .ribbon-right {
   position: absolute;
   top: 0;
@@ -105,29 +110,32 @@ html, body {
   background: linear-gradient(135deg, #8b0000 0%, #b30000 50%, #ff4d4d 100%);
   z-index: 1;
   box-shadow: inset 0 2px 5px rgba(255,255,255,0.3);
+  transform-origin: center;
+  border-radius: 50% 50% 0 0;
 }
+
 .ribbon-left { left: -50px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
 .ribbon-right { right: -50px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
-/* Ribbon gift unwrap animation */
+/* Ribbon open animation */
 .cover.opening .ribbon-center { animation: centerLift 1s forwards; }
-.cover.opening .ribbon-left { animation: leftUnwrap 1s forwards cubic-bezier(.55,.05,.68,.19); }
-.cover.opening .ribbon-right { animation: rightUnwrap 1s forwards cubic-bezier(.55,.05,.68,.19); }
+.cover.opening .ribbon-left { animation: leftCurl 1s forwards cubic-bezier(.55,.05,.68,.19); }
+.cover.opening .ribbon-right { animation: rightCurl 1s forwards cubic-bezier(.55,.05,.68,.19); }
 
 @keyframes centerLift {
   0% { transform: rotateX(0deg) scale(1); opacity: 1; }
   50% { transform: rotateX(-45deg) scale(1.05); opacity: 0.9; }
   100% { transform: translateY(-80px) rotateX(-90deg) scale(1); opacity: 0; }
 }
-@keyframes leftUnwrap {
-  0% { transform: rotateY(0deg) translateX(0); }
-  50% { transform: rotateY(-60deg) translateX(-50%) rotateZ(-15deg); }
-  100% { transform: rotateY(-120deg) translateX(-180%) rotateZ(-45deg); opacity: 0; }
+@keyframes leftCurl {
+  0% { transform: rotateY(0deg) rotateZ(0deg) translateX(0) translateY(0); }
+  50% { transform: rotateY(-60deg) rotateZ(-30deg) translateX(-50%) translateY(-20%); }
+  100% { transform: rotateY(-120deg) rotateZ(-60deg) translateX(-180%) translateY(-60%); opacity: 0; }
 }
-@keyframes rightUnwrap {
-  0% { transform: rotateY(0deg) translateX(0); }
-  50% { transform: rotateY(60deg) translateX(50%) rotateZ(15deg); }
-  100% { transform: rotateY(120deg) translateX(180%) rotateZ(45deg); opacity: 0; }
+@keyframes rightCurl {
+  0% { transform: rotateY(0deg) rotateZ(0deg) translateX(0) translateY(0); }
+  50% { transform: rotateY(60deg) rotateZ(30deg) translateX(50%) translateY(-20%); }
+  100% { transform: rotateY(120deg) rotateZ(60deg) translateX(180%) translateY(-60%); opacity: 0; }
 }
 
 /* ================= CARD ================= */
@@ -136,7 +144,7 @@ html, body {
   max-width:420px;
   max-height:92vh;
   border-radius:24px;
-  background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url("krishna.jpg") center/cover no-repeat;
+  background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("krishna.jpg") center/cover no-repeat;
   box-shadow:0 12px 30px rgba(0,0,0,0.12);
   position:relative;
   overflow-y:auto;
@@ -177,6 +185,7 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
   animation:rise 3s forwards;
 }
 @keyframes rise{ 0%{transform:translateY(0) scale(0.5); opacity:1;}50%{opacity:1;}100%{transform:translateY(-200px) scale(1.2) rotate(360deg); opacity:0;} }
+
 </style>
 </head>
 <body>
@@ -189,7 +198,7 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
   <div class="ribbon-wrapper">
     <div class="ribbon">
       <div class="ribbon-left"></div>
-      <div class="ribbon-center" data-text="Tap to Open">Tap to Open</div>
+      <div class="ribbon-center pulse" data-text="Tap to Open">Tap to Open</div>
       <div class="ribbon-right"></div>
     </div>
   </div>
@@ -256,14 +265,17 @@ function openInvite(){
 
 // FLOWERS
 function flowers(){
-  for(let i=0;i<30;i++){
+  for(let i=0;i<40;i++){
     let f=document.createElement('div');
     f.className='flower';
     f.style.left=Math.random()*100+'vw';
     f.style.width=10+Math.random()*14+'px';
     f.style.height=12+Math.random()*22+'px';
-    // blue and pink flowers
-    f.style.background = Math.random()>0.5 ? "radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1)" : "radial-gradient(circle at 30% 30%, #87cefa, #00bfff)";
+    // Pink, Blue, Yellow petals
+    let rand=Math.random();
+    if(rand<0.33) f.style.background="radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1)";
+    else if(rand<0.66) f.style.background="radial-gradient(circle at 30% 30%, #87cefa, #00bfff)";
+    else f.style.background="radial-gradient(circle at 30% 30%, #fffacd, #ffd700)";
     f.style.animationDuration=4+Math.random()*5+'s';
     document.body.appendChild(f);
   }

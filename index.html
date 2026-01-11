@@ -12,7 +12,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Georgia', 'Palatino Linotype', serif;
+  font-family: 'Georgia', serif;
   overflow: hidden;
 }
 
@@ -53,16 +53,16 @@ html, body {
 /* COVER TITLE */
 .cover-title {
   position: relative;
-  z-index: 2;
+  z-index: 6; /* on top */
   color: #fffacd;
-  font-size: 36px;
+  font-size: 42px; 
   font-weight: 900;
-  text-shadow: 0 0 25px #ffd700, 0 0 35px #ff8c00;
+  text-shadow: 0 0 30px #ffd700, 0 0 40px #ff8c00;
   animation: floatText 3s ease-in-out infinite alternate, glowText 2s infinite alternate;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
-@keyframes floatText { 0%{transform: translateY(0px);} 100%{transform: translateY(-15px);} }
-@keyframes glowText { 0%{text-shadow:0 0 15px #ffd700,0 0 25px #ff8c00;} 100%{text-shadow:0 0 35px #fffacd,0 0 55px #ff6347;} }
+@keyframes floatText { 0%{transform: translateY(0px);} 100%{transform: translateY(-20px);} }
+@keyframes glowText { 0%{text-shadow:0 0 20px #ffd700,0 0 30px #ff8c00;} 100%{text-shadow:0 0 40px #fffacd,0 0 60px #ff6347;} }
 
 /* ================= GIFT WRAP RIBBON ================= */
 .ribbon-horizontal, .ribbon-vertical {
@@ -70,19 +70,19 @@ html, body {
   background: linear-gradient(135deg, #ffd700 0%, #ffdf70 50%, #ffd700 100%);
   z-index: 2;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  transition: transform 1s ease, opacity 1s ease;
+  transition: transform 1.2s ease, opacity 1.2s ease;
 }
 .ribbon-horizontal {
   top: 50%;
   left: 0;
   width: 100%;
-  height: 24px;
+  height: 30px;
   transform: translateY(-50%);
 }
 .ribbon-vertical {
   top: 0;
   left: 50%;
-  width: 24px;
+  width: 30px;
   height: 100%;
   transform: translateX(-50%);
 }
@@ -92,15 +92,15 @@ html, body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(255, 223, 0, 0.8), rgba(255, 223, 0, 0) 70%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(255, 223, 0, 0.9), rgba(255, 223, 0, 0) 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0.5);
   opacity: 0;
-  z-index: 2;
+  z-index: 3;
   transition: transform 1s ease, opacity 1s ease;
-  filter: blur(8px);
+  filter: blur(12px);
 }
 
 /* 3D Bow */
@@ -108,49 +108,71 @@ html, body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 4;
 }
 .bow-left, .bow-right, .bow-center {
   position: absolute;
-  width: 30px;
-  height: 50px;
+  width: 50px;
+  height: 80px;
   background: linear-gradient(135deg, #ffd700 0%, #ffdf70 50%, #ffd700 100%);
   border-radius: 50% 50% 0 0;
   top: 0;
   transform-origin: bottom center;
-  transition: transform 1s ease, opacity 1s ease;
+  transition: transform 1.2s ease, opacity 1.2s ease;
 }
-.bow-left { left: -15px; transform: rotate(-45deg); }
-.bow-right { left: 15px; transform: rotate(45deg); }
+.bow-left { left: -25px; transform: rotate(-45deg); }
+.bow-right { left: 25px; transform: rotate(45deg); }
 .bow-center { left: 50%; transform: translateX(-50%); border-radius: 50%; }
+
+/* Sparkle on bow */
+.bow-sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fffacd, #ffd700);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 5;
+  animation: sparkleBow 1.2s infinite;
+}
+@keyframes sparkleBow {
+  0%, 100% { transform: translate(-50%, -50%) scale(0); opacity:0; }
+  50% { transform: translate(-50%, -50%) scale(1); opacity:1; }
+}
 
 /* OPENING ANIMATION */
 .cover.opening .ribbon-horizontal {
-  transform: translateY(-50%) translateX(-100vw);
+  transform: translateY(-50%) translateX(-120vw);
   opacity: 0;
 }
 .cover.opening .ribbon-vertical {
-  transform: translateX(-50%) translateY(-100vh);
+  transform: translateX(-50%) translateY(-120vh);
   opacity: 0;
 }
 .cover.opening .bow-left {
-  transform: rotateZ(-180deg) rotateX(60deg) translate(-60px, -20px);
+  transform: rotateZ(-210deg) rotateX(80deg) translate(-120px, -60px);
   opacity: 0;
 }
 .cover.opening .bow-right {
-  transform: rotateZ(180deg) rotateX(-60deg) translate(60px, -20px);
+  transform: rotateZ(210deg) rotateX(-80deg) translate(120px, -60px);
   opacity: 0;
 }
 .cover.opening .bow-center {
   transform: scale(0);
   opacity: 0;
 }
-/* Glow animation */
 .cover.opening .bow-glow {
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(2);
+  opacity: 1;
+}
+.cover.opening .bow-sparkle {
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
@@ -181,13 +203,13 @@ html, body {
 .map-btn:hover{ background:#ff9999; transform:scale(1.05); }
 footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
 
-/* ================= FLOWERS ================= */
+/* ================= FLOWERS / PETALS ================= */
 .flower{
   position:fixed;
   top:-30px;
   width:14px;
   height:22px;
-  background: radial-gradient(circle at 30% 30%, #ffdf70, #ffd700);
+  background: radial-gradient(circle at 30% 30%, #ffd700, #ffdf70);
   border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
   animation:fall linear infinite;
   pointer-events:none;
@@ -195,7 +217,7 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
 }
 @keyframes fall{ to{transform:translateY(110vh) rotate(360deg);} }
 
-/* ================= BABY SHOWER CONFETTI ================= */
+/* BABY SHOWER CONFETTI */
 .baby-icon{
   position:absolute;
   font-size:22px;
@@ -227,6 +249,9 @@ footer{ font-size:17px; margin-top:14px; color:#8b0000; font-weight:bold; }
     <div class="bow-right"></div>
     <div class="bow-center"></div>
   </div>
+
+  <!-- Bow Sparkle -->
+  <div class="bow-sparkle"></div>
 </div>
 
 <!-- CARD -->
@@ -287,19 +312,24 @@ function openInvite(){
     document.getElementById('flute').play();
     flowers();
     babyShower();
-  },1000);
+  },1200);
 }
 
-// FLOWERS
+// FLOWERS / PETALS
 function flowers(){
-  for(let i=0;i<30;i++){
+  const colors = [
+    "radial-gradient(circle at 30% 30%, #ffd700, #ffdf70)", // gold
+    "radial-gradient(circle at 30% 30%, #ffd6e6, #ff8fb1)", // pink
+    "radial-gradient(circle at 30% 30%, #87cefa, #00bfff)"  // blue
+  ];
+  for(let i=0;i<40;i++){
     let f=document.createElement('div');
     f.className='flower';
     f.style.left=Math.random()*100+'vw';
     f.style.width=10+Math.random()*14+'px';
     f.style.height=12+Math.random()*22+'px';
-    f.style.background = "radial-gradient(circle at 30% 30%, #ffd700, #ffdf70)";
-    f.style.animationDuration=6+Math.random()*5+'s';
+    f.style.background = colors[Math.floor(Math.random()*colors.length)];
+    f.style.animationDuration=4+Math.random()*5+'s';
     document.body.appendChild(f);
   }
 }
